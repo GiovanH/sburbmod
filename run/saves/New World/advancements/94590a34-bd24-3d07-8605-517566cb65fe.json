@@ -1,0 +1,14 @@
+{
+  "minecraft:recipes/building_blocks/polished_andesite": {
+    "criteria": {
+      "has_stone": "2018-01-03 16:38:16 -0600"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2018-01-03 16:37:58 -0600"
+    },
+    "done": false
+  }
+}

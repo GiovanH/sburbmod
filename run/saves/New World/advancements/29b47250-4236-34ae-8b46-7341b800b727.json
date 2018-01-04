@@ -1,0 +1,9 @@
+{
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "desert_hills": "2017-12-25 16:14:36 -0600",
+      "desert": "2017-12-25 16:14:14 -0600"
+    },
+    "done": false
+  }
+}

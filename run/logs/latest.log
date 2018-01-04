@@ -1,0 +1,54 @@
+[00:25:19] [main/INFO]: Setting user: Player252
+[00:25:24] [main/WARN]: Skipping bad option: lastServer:
+[00:25:24] [main/INFO]: LWJGL Version: 2.9.4
+[00:25:28] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Sburb
+[00:25:33] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[00:25:33] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[00:25:33] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[00:25:33] [Thread-5/INFO]: OpenAL initialized.
+[00:25:33] [Sound Library Loader/INFO]: Sound engine started
+[00:25:40] [main/INFO]: Created: 512x512 textures-atlas
+[00:25:42] [main/WARN]: Skipping bad option: lastServer:
+[00:25:42] [main/INFO]: Narrator library for x64 successfully loaded
+[00:25:43] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[00:25:48] [Server thread/INFO]: Starting integrated minecraft server version 1.12
+[00:25:48] [Server thread/INFO]: Generating keypair
+[00:25:49] [Server thread/INFO]: Loaded 488 advancements
+[00:25:49] [Server thread/INFO]: Preparing start region for level 0
+[00:25:50] [Server thread/INFO]: Preparing spawn area: 23%
+[00:25:51] [Server thread/INFO]: Changing view distance to 12, from 10
+[00:25:53] [Server thread/INFO]: Player252[local:E:a70a5f9a] logged in with entity id 222 at (-155.90513336263714, 74.0, 225.70771835789273)
+[00:25:53] [Server thread/INFO]: Player252 joined the game
+[00:25:54] [Server thread/INFO]: Saving and pausing game...
+[00:25:54] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[00:25:55] [main/INFO]: Loaded 2 advancements
+[00:25:55] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[00:25:55] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[00:26:17] [Server thread/INFO]: [Player252: Set the time to 1000]
+[00:26:17] [main/INFO]: [CHAT] Set the time to 1000
+[00:29:39] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 12016ms behind, skipping 240 tick(s)
+[00:30:05] [main/INFO]: Loaded 3 advancements
+[00:30:10] [Server thread/INFO]: [Player252: Cleared the inventory of Player252, removing 82 items]
+[00:30:10] [main/INFO]: [CHAT] Cleared the inventory of Player252, removing 82 items
+[00:30:12] [main/INFO]: Loaded 7 advancements
+[00:30:27] [Server thread/INFO]: Player252 has made the advancement [Diamonds!]
+[00:30:27] [main/INFO]: [CHAT] Player252 has made the advancement [Diamonds!]
+[00:30:27] [main/INFO]: Loaded 25 advancements
+[00:32:21] [main/INFO]: Loaded 27 advancements
+[00:32:26] [main/INFO]: Loaded 29 advancements
+[00:34:57] [Server thread/INFO]: Saving and pausing game...
+[00:34:57] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[00:34:58] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[00:34:58] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[00:34:58] [Server thread/INFO]: Stopping server
+[00:34:58] [Server thread/INFO]: Saving players
+[00:34:58] [Server thread/INFO]: Player252 lost connection: Disconnected
+[00:34:58] [Server thread/INFO]: Player252 left the game
+[00:34:58] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[00:34:58] [Server thread/INFO]: Saving worlds
+[00:34:58] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[00:34:58] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[00:34:58] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[00:39:40] [main/INFO]: Stopping!
+[00:39:40] [main/INFO]: SoundSystem shutting down...
+[00:39:40] [main/WARN]: Author: Paul Lamb, www.paulscode.com

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "blocks/purpur_pillar_top",
+        "up": "sburbmod:blocks/spirograph_grey",
+        "east": "blocks/purpur_pillar_top",
+        "west": "blocks/purpur_pillar_top",
+        "north": "blocks/purpur_pillar_top",
+        "south": "blocks/purpur_pillar_top",
+        "particle": "blocks/purpur_pillar_top"
+    }
+}

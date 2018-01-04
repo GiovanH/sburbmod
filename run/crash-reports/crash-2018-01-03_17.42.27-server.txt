@@ -1,0 +1,78 @@
+---- Minecraft Crash Report ----
+// Would you like a cupcake?
+
+Time: 1/3/18 5:42 PM
+Description: Exception ticking world
+
+java.lang.NullPointerException: Exception ticking world
+	at gio.sburbmod.puncher.TilePuncher.writeToNBT(TilePuncher.java:296)
+	at gio.sburbmod.puncher.TilePuncher.getUpdateTag(TilePuncher.java:353)
+	at gio.sburbmod.puncher.TilePuncher.getUpdatePacket(TilePuncher.java:334)
+	at net.minecraft.server.management.PlayerChunkMapEntry.sendBlockEntity(PlayerChunkMapEntry.java:295)
+	at net.minecraft.server.management.PlayerChunkMapEntry.update(PlayerChunkMapEntry.java:257)
+	at net.minecraft.server.management.PlayerChunkMap.tick(PlayerChunkMap.java:139)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:235)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:825)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:740)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:589)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at gio.sburbmod.puncher.TilePuncher.writeToNBT(TilePuncher.java:296)
+	at gio.sburbmod.puncher.TilePuncher.getUpdateTag(TilePuncher.java:353)
+	at gio.sburbmod.puncher.TilePuncher.getUpdatePacket(TilePuncher.java:334)
+	at net.minecraft.server.management.PlayerChunkMapEntry.sendBlockEntity(PlayerChunkMapEntry.java:295)
+	at net.minecraft.server.management.PlayerChunkMapEntry.update(PlayerChunkMapEntry.java:257)
+	at net.minecraft.server.management.PlayerChunkMap.tick(PlayerChunkMap.java:139)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:235)
+
+-- Affected level --
+Details:
+	Level name: New World
+	All players: 1 total; [EntityPlayerMP['Player136'/18248, l='New World', x=-168.11, y=75.00, z=212.82]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 8388746915739068109
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (-180,64,252), Chunk: (at 12,4,12 in -12,15; contains blocks -192,0,240 to -177,255,255), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 670789 game time, 27081 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 76058 (now: false), thunder time: 53215 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:825)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:740)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:192)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:589)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_144, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 836756976 bytes (797 MB) / 1862795264 bytes (1776 MB) up to 7596408832 bytes (7244 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	FML: MCP 9.40 Powered by Forge 14.21.1.2443 5 mods loaded, 5 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAAAAAAA	minecraft{1.12} [Minecraft] (minecraft.jar) 
+	UCHIJAAAAAAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAAAAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.12-14.21.1.2443.jar) 
+	UCHIJAAAAAAAAA	forge{14.21.1.2443} [Minecraft Forge] (forgeSrc-1.12-14.21.1.2443.jar) 
+	UCHIJAAAAAAAAA	sburbmod{0.1} [Sburb] (bin) 
+	Loaded coremods (and transformers): 
+	GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 8; [EntityPlayerMP['Player136'/18248, l='New World', x=-168.11, y=75.00, z=212.82]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'fml,forge'

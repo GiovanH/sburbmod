@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sburbmod",
+  "name": "Sburb",
+  "description": "More convoluted ways to craft things.",
+  "version": "1.0",
+  "mcversion": "1.12",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["GiovanH"],
+  "credits": "8^y",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

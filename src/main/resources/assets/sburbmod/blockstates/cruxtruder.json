@@ -1,0 +1,6 @@
+{
+    "variants": {
+           "inventory_filled=0": { "model": "sburbmod:cruxtruder_model_0"},
+           "inventory_filled=1": { "model": "sburbmod:cruxtruder_model_1"}
+    }
+}

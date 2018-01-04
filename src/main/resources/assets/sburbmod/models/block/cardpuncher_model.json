@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "blocks/piston_bottom",
+        "up": "blocks/crafting_table_top",
+        "east": "blocks/piston_side",
+        "west": "blocks/piston_side",
+        "north": "blocks/piston_side",
+        "south": "blocks/piston_side",
+        "particle": "blocks/piston_side"
+    }
+}

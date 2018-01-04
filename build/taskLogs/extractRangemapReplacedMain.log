@@ -1,0 +1,14 @@
+Symbol range map extraction starting
+Processing 4 files
+startProcessing "com\example\examplemod\ExampleMod.java" md5: 8847eaef7570cb68660c88665a2d1d65
+endProcessing "com\example\examplemod\ExampleMod.java"
+
+startProcessing "gio\sburbmod\SburbMod.java" md5: d53ae250e3425ff412f4430dadbc14c2
+endProcessing "gio\sburbmod\SburbMod.java"
+
+startProcessing "gio\sburbmod\proxy\ClientProxy.java" md5: 7ed2e2aaf67c1f7750041f2b7d276819
+endProcessing "gio\sburbmod\proxy\ClientProxy.java"
+
+startProcessing "gio\sburbmod\proxy\CommonProxy.java" md5: ba9424cf5b6f5719d488aadfa3cdf311
+endProcessing "gio\sburbmod\proxy\CommonProxy.java"
+

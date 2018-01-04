@@ -1,0 +1,132 @@
+Symbol range map extraction starting
+Processing 4 files
+startProcessing "com\example\examplemod\ExampleMod.java" md5: 8847eaef7570cb68660c88665a2d1d65
+@|com\example\examplemod\ExampleMod.java|8|30|com.example.examplemod|package|com.example.examplemod|(file)
+Class Start: com.example.examplemod.ExampleMod
+   @|com\example\examplemod\ExampleMod.java|233|236|Mod|class|net.minecraftforge.fml.common.Mod
+   @|com\example\examplemod\ExampleMod.java|237|242|modid|method|net.minecraftforge.fml.common.Mod|modid|()Ljava/lang/String;
+   @|com\example\examplemod\ExampleMod.java|245|255|ExampleMod|class|com.example.examplemod.ExampleMod
+   @|com\example\examplemod\ExampleMod.java|256|261|MODID|field|com.example.examplemod.ExampleMod|MODID
+   @|com\example\examplemod\ExampleMod.java|263|270|version|method|net.minecraftforge.fml.common.Mod|version|()Ljava/lang/String;
+   @|com\example\examplemod\ExampleMod.java|273|283|ExampleMod|class|com.example.examplemod.ExampleMod
+   @|com\example\examplemod\ExampleMod.java|284|291|VERSION|field|com.example.examplemod.ExampleMod|VERSION
+   @|com\example\examplemod\ExampleMod.java|306|316|ExampleMod|class|com.example.examplemod.ExampleMod
+   @|com\example\examplemod\ExampleMod.java|343|349|String|class|java.lang.String
+   @|com\example\examplemod\ExampleMod.java|343|349|String|class|java.lang.String
+   @|com\example\examplemod\ExampleMod.java|350|355|MODID|field|com.example.examplemod.ExampleMod|MODID|
+   @|com\example\examplemod\ExampleMod.java|396|402|String|class|java.lang.String
+   @|com\example\examplemod\ExampleMod.java|396|402|String|class|java.lang.String
+   @|com\example\examplemod\ExampleMod.java|403|410|VERSION|field|com.example.examplemod.ExampleMod|VERSION|
+   Method Start: init(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+      @|com\example\examplemod\ExampleMod.java|487|492|event|param|com.example.examplemod.ExampleMod|init|(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V|event|0
+      @|com\example\examplemod\ExampleMod.java|430|442|EventHandler|class|net.minecraftforge.fml.common.Mod.EventHandler
+      @|com\example\examplemod\ExampleMod.java|459|463|init|method|com.example.examplemod.ExampleMod|init|(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+      @|com\example\examplemod\ExampleMod.java|464|486|FMLInitializationEvent|class|net.minecraftforge.fml.common.event.FMLInitializationEvent
+      @|com\example\examplemod\ExampleMod.java|537|543|System|class|java.lang.System
+      @|com\example\examplemod\ExampleMod.java|544|547|out|field|java.lang.System|out
+      @|com\example\examplemod\ExampleMod.java|548|555|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
+      @|com\example\examplemod\ExampleMod.java|573|579|Blocks|class|net.minecraft.init.Blocks
+      @|com\example\examplemod\ExampleMod.java|580|584|DIRT|field|net.minecraft.init.Blocks|DIRT
+      @|com\example\examplemod\ExampleMod.java|585|603|getUnlocalizedName|method|net.minecraft.block.Block|getUnlocalizedName|()Ljava/lang/String;
+   Method End: init(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+Class End  : com.example.examplemod.ExampleMod
+endProcessing "com\example\examplemod\ExampleMod.java"
+
+startProcessing "gio\sburbmod\SburbMod.java" md5: d53ae250e3425ff412f4430dadbc14c2
+@|gio\sburbmod\SburbMod.java|8|20|gio.sburbmod|package|gio.sburbmod|(file)
+Class Start: gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|364|367|Mod|class|net.minecraftforge.fml.common.Mod
+   @|gio\sburbmod\SburbMod.java|368|373|modid|method|net.minecraftforge.fml.common.Mod|modid|()Ljava/lang/String;
+   @|gio\sburbmod\SburbMod.java|376|384|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|385|390|modId|field|gio.sburbmod.SburbMod|modId
+   @|gio\sburbmod\SburbMod.java|392|396|name|method|net.minecraftforge.fml.common.Mod|name|()Ljava/lang/String;
+   @|gio\sburbmod\SburbMod.java|399|407|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|408|412|name|field|gio.sburbmod.SburbMod|name
+   @|gio\sburbmod\SburbMod.java|414|421|version|method|net.minecraftforge.fml.common.Mod|version|()Ljava/lang/String;
+   @|gio\sburbmod\SburbMod.java|424|432|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|433|440|version|field|gio.sburbmod.SburbMod|version
+   @|gio\sburbmod\SburbMod.java|455|463|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|597|608|CommonProxy|class|gio.sburbmod.proxy.CommonProxy
+   @|gio\sburbmod\SburbMod.java|469|479|SidedProxy|class|net.minecraftforge.fml.common.SidedProxy
+   @|gio\sburbmod\SburbMod.java|480|490|serverSide|method|net.minecraftforge.fml.common.SidedProxy|serverSide|()Ljava/lang/String;
+   @|gio\sburbmod\SburbMod.java|531|541|clientSide|method|net.minecraftforge.fml.common.SidedProxy|clientSide|()Ljava/lang/String;
+   @|gio\sburbmod\SburbMod.java|597|608|CommonProxy|class|gio.sburbmod.proxy.CommonProxy
+   @|gio\sburbmod\SburbMod.java|609|614|proxy|field|gio.sburbmod.SburbMod|proxy|
+   @|gio\sburbmod\SburbMod.java|639|645|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|639|645|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|646|651|modId|field|gio.sburbmod.SburbMod|modId|
+   @|gio\sburbmod\SburbMod.java|687|693|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|687|693|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|694|698|name|field|gio.sburbmod.SburbMod|name|
+   @|gio\sburbmod\SburbMod.java|738|744|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|738|744|String|class|java.lang.String
+   @|gio\sburbmod\SburbMod.java|745|752|version|field|gio.sburbmod.SburbMod|version|
+   @|gio\sburbmod\SburbMod.java|803|811|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|768|780|Mod.Instance|class|net.minecraftforge.fml.common.Mod.Instance
+   @|gio\sburbmod\SburbMod.java|781|786|modId|field|gio.sburbmod.SburbMod|modId
+   @|gio\sburbmod\SburbMod.java|803|811|SburbMod|class|gio.sburbmod.SburbMod
+   @|gio\sburbmod\SburbMod.java|812|820|instance|field|gio.sburbmod.SburbMod|instance|
+   Method Start: preInit(Lnet/minecraftforge/fml/common/event/FMLPreInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|890|895|event|param|gio.sburbmod.SburbMod|preInit|(Lnet/minecraftforge/fml/common/event/FMLPreInitializationEvent;)V|event|0
+      @|gio\sburbmod\SburbMod.java|826|842|Mod.EventHandler|class|net.minecraftforge.fml.common.Mod.EventHandler
+      @|gio\sburbmod\SburbMod.java|856|863|preInit|method|gio.sburbmod.SburbMod|preInit|(Lnet/minecraftforge/fml/common/event/FMLPreInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|864|889|FMLPreInitializationEvent|class|net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+      @|gio\sburbmod\SburbMod.java|901|907|System|class|java.lang.System
+      @|gio\sburbmod\SburbMod.java|908|911|out|field|java.lang.System|out
+      @|gio\sburbmod\SburbMod.java|912|919|println|method|java.io.PrintStream|println|(Ljava/lang/String;)V
+      @|gio\sburbmod\SburbMod.java|920|924|name|field|gio.sburbmod.SburbMod|name
+   Method End: preInit(Lnet/minecraftforge/fml/common/event/FMLPreInitializationEvent;)V
+   Method Start: init(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|1009|1014|event|param|gio.sburbmod.SburbMod|init|(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V|event|0
+      @|gio\sburbmod\SburbMod.java|951|967|Mod.EventHandler|class|net.minecraftforge.fml.common.Mod.EventHandler
+      @|gio\sburbmod\SburbMod.java|981|985|init|method|gio.sburbmod.SburbMod|init|(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|986|1008|FMLInitializationEvent|class|net.minecraftforge.fml.common.event.FMLInitializationEvent
+   Method End: init(Lnet/minecraftforge/fml/common/event/FMLInitializationEvent;)V
+   Method Start: postInit(Lnet/minecraftforge/fml/common/event/FMLPostInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|1094|1099|event|param|gio.sburbmod.SburbMod|postInit|(Lnet/minecraftforge/fml/common/event/FMLPostInitializationEvent;)V|event|0
+      @|gio\sburbmod\SburbMod.java|1028|1044|Mod.EventHandler|class|net.minecraftforge.fml.common.Mod.EventHandler
+      @|gio\sburbmod\SburbMod.java|1058|1066|postInit|method|gio.sburbmod.SburbMod|postInit|(Lnet/minecraftforge/fml/common/event/FMLPostInitializationEvent;)V
+      @|gio\sburbmod\SburbMod.java|1067|1093|FMLPostInitializationEvent|class|net.minecraftforge.fml.common.event.FMLPostInitializationEvent
+   Method End: postInit(Lnet/minecraftforge/fml/common/event/FMLPostInitializationEvent;)V
+Class End  : gio.sburbmod.SburbMod
+endProcessing "gio\sburbmod\SburbMod.java"
+
+startProcessing "gio\sburbmod\proxy\ClientProxy.java" md5: 7ed2e2aaf67c1f7750041f2b7d276819
+@|gio\sburbmod\proxy\ClientProxy.java|8|26|gio.sburbmod.proxy|package|gio.sburbmod.proxy|(file)
+Class Start: gio.sburbmod.proxy.ClientProxy
+   @|gio\sburbmod\proxy\ClientProxy.java|229|240|ClientProxy|class|gio.sburbmod.proxy.ClientProxy
+   @|gio\sburbmod\proxy\ClientProxy.java|249|260|CommonProxy|class|gio.sburbmod.proxy.CommonProxy
+   Method Start: registerItemRenderer(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+      @|gio\sburbmod\proxy\ClientProxy.java|303|307|item|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|item|0
+      @|gio\sburbmod\proxy\ClientProxy.java|313|317|meta|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|meta|1
+      @|gio\sburbmod\proxy\ClientProxy.java|326|328|id|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|id|2
+      @|gio\sburbmod\proxy\ClientProxy.java|277|297|registerItemRenderer|method|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+      @|gio\sburbmod\proxy\ClientProxy.java|298|302|Item|class|net.minecraft.item.Item
+      @|gio\sburbmod\proxy\ClientProxy.java|319|325|String|class|java.lang.String
+      @|gio\sburbmod\proxy\ClientProxy.java|333|344|ModelLoader|class|net.minecraftforge.client.model.ModelLoader
+      @|gio\sburbmod\proxy\ClientProxy.java|345|375|setCustomModelResourceLocation|method|net.minecraftforge.client.model.ModelLoader|setCustomModelResourceLocation|(Lnet/minecraft/item/Item;ILnet/minecraft/client/renderer/block/model/ModelResourceLocation;)V
+      @|gio\sburbmod\proxy\ClientProxy.java|376|380|item|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|item|0
+      @|gio\sburbmod\proxy\ClientProxy.java|382|386|meta|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|meta|1
+      @|gio\sburbmod\proxy\ClientProxy.java|392|413|ModelResourceLocation|class|net.minecraft.client.renderer.block.model.ModelResourceLocation
+      @|gio\sburbmod\proxy\ClientProxy.java|414|422|SburbMod|class|gio.sburbmod.SburbMod
+      @|gio\sburbmod\proxy\ClientProxy.java|423|428|modId|field|gio.sburbmod.SburbMod|modId
+      @|gio\sburbmod\proxy\ClientProxy.java|437|439|id|param|gio.sburbmod.proxy.ClientProxy|registerItemRenderer|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|id|2
+   Method End: registerItemRenderer(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+Class End  : gio.sburbmod.proxy.ClientProxy
+endProcessing "gio\sburbmod\proxy\ClientProxy.java"
+
+startProcessing "gio\sburbmod\proxy\CommonProxy.java" md5: ba9424cf5b6f5719d488aadfa3cdf311
+@|gio\sburbmod\proxy\CommonProxy.java|8|26|gio.sburbmod.proxy|package|gio.sburbmod.proxy|(file)
+Class Start: gio.sburbmod.proxy.CommonProxy
+   @|gio\sburbmod\proxy\CommonProxy.java|75|86|CommonProxy|class|gio.sburbmod.proxy.CommonProxy
+   Method Start: registerItemRegister(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+      @|gio\sburbmod\proxy\CommonProxy.java|128|132|item|param|gio.sburbmod.proxy.CommonProxy|registerItemRegister|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|item|0
+      @|gio\sburbmod\proxy\CommonProxy.java|138|142|meta|param|gio.sburbmod.proxy.CommonProxy|registerItemRegister|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|meta|1
+      @|gio\sburbmod\proxy\CommonProxy.java|151|153|id|param|gio.sburbmod.proxy.CommonProxy|registerItemRegister|(Lnet/minecraft/item/Item;ILjava/lang/String;)V|id|2
+      @|gio\sburbmod\proxy\CommonProxy.java|102|122|registerItemRegister|method|gio.sburbmod.proxy.CommonProxy|registerItemRegister|(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+      @|gio\sburbmod\proxy\CommonProxy.java|123|127|Item|class|net.minecraft.item.Item
+      @|gio\sburbmod\proxy\CommonProxy.java|144|150|String|class|java.lang.String
+   Method End: registerItemRegister(Lnet/minecraft/item/Item;ILjava/lang/String;)V
+Class End  : gio.sburbmod.proxy.CommonProxy
+endProcessing "gio\sburbmod\proxy\CommonProxy.java"
+

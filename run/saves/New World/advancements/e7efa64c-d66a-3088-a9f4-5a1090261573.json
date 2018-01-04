@@ -1,0 +1,14 @@
+{
+  "minecraft:recipes/misc/gold_ingot_from_block": {
+    "criteria": {
+      "has_gold_block": "2018-01-03 23:35:19 -0600"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "plains": "2018-01-03 23:35:19 -0600"
+    },
+    "done": false
+  }
+}

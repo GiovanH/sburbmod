@@ -1,0 +1,30 @@
+itemGroup.Sburb=Phernalia Registry
+
+tile.sburbmod_generic.name=Perfectly Generic Block
+
+item.sburbmod_cruxtruder.name=Cruxtruder
+tile.sburbmod_cruxtruder.name=Cruxtruder
+container.sburbmod_cruxtruder.name=Cruxtruder
+
+item.sburbmod_dowel_empty.name=Uncut Cruxite Dowel
+item.sburbmod_dowel_carved.name=Carved Cruxite Dowel
+
+item.sburbmod_cardprinter.name=Card Printer
+tile.sburbmod_cardprinter.name=Card Printer
+container.sburbmod_cardprinter.name=Card Printer
+text.printer.instructions=Recycle a stack of 64
+
+item.sburbmod_punchcard.name=Blank Captcha Card
+item.sburbmod_punchcard_punched.name=Punched Captcha Card
+
+item.sburbmod_cardpuncher.name=Punch Designix
+tile.sburbmod_cardpuncher.name=Punch Designix
+container.sburbmod_cardpuncher.name=Punch Designix
+
+item.sburbmod_alchemiter.name=Alchemiter
+tile.sburbmod_alchemiter.name=Alchemiter
+container.sburbmod_alchemiter.name=Alchemiter
+
+item.sburbmod_lathe.name=Totem Lathe
+tile.sburbmod_lathe.name=Totem Lathe
+container.sburbmod_lathe.name=Totem Lathe
