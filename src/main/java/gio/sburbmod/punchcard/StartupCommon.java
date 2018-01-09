@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class StartupCommon {
 	public static PunchCard unPunchCard; // this holds the unique instance of your block
 	public static PunchCardPunched punchCardPunched; // this holds the unique instance of your block
+	//public static PunchCard punchCardUnified;
 
 	public static void preInitCommon() {
 		// each instance of your item should have two names:
@@ -34,9 +35,15 @@ public class StartupCommon {
 		unPunchCard = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard"));
 		unPunchCard.setRegistryName("punchcard");
 		ForgeRegistries.ITEMS.register(unPunchCard);
+		
+//		punchCardUnified = (PunchCard) (new PunchCard());
+//		punchCardUnified.setRegistryName("punchcard_u");
+//		ForgeRegistries.ITEMS.register(punchCardUnified);
+		
 		punchCardPunched = (PunchCardPunched) (new PunchCardPunched().setUnlocalizedName("sburbmod_punchcard_punched"));
 		punchCardPunched.setRegistryName("punchcard_punched");
 		ForgeRegistries.ITEMS.register(punchCardPunched);
+		
 	}
 
 	public static void initCommon() {

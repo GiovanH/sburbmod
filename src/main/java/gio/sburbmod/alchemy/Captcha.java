@@ -1,7 +1,8 @@
 package gio.sburbmod.alchemy;
 
+import gio.sburbmod.pgo.PgoHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import gio.sburbmod.alchemy.Algorithms;
 
 @SuppressWarnings("unused")
-public class Util {
+public class Captcha {
 	private static final long CAPTCHASIZE = (long) (Math.pow(64, 8));
 	private static final int CODE_LENGTH = 6;
 
@@ -32,21 +33,40 @@ public class Util {
 		return String.valueOf(code);
 	}
 
+	enum specialCodes {
+		ZEROES, PGO, CARD
+	}
+
 	public static String getCaptchaCode(String input) {
-		// TODO Auto-generated method stub
-		if (input.equals("sburbmod:generic")) {
-			StringBuilder s = new StringBuilder();
-			for (int i = 0; i < CODE_LENGTH; i++)
-				s.append("0");
-			return s.toString();
-		}
 		return getCaptchaCode(Algorithms.hashString(input, CAPTCHASIZE));
 	}
 
+	static String specialCode(specialCodes code) {
+		switch (code) {
+		case PGO:
+			return repeatCode('0');
+		case CARD:
+			return repeatCode('1');
+		default:
+			return "OH_NO_";
+		}
+	}
+
+	static String repeatCode(char c) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < CODE_LENGTH; i++)
+			s.append(c);
+		return s.toString();
+	}
+
 	public static String getCaptchaCode(ItemStack input) {
-		// TODO Auto-generated method stub
+		if (PgoHelper.isInstance(input))
+			return specialCode(specialCodes.PGO);
+		if (input.getItem().getRegistryName() == gio.sburbmod.punchcard.StartupCommon.unPunchCard.getRegistryName())
+			return specialCode(specialCodes.CARD);
+		// TODO: Migrate from code key to item nbt
+		// StringBuilder extradata = new StringBuilder();
 		return getCaptchaCode(input.getItem().getRegistryName().toString());
 	}
-	
-	
+
 }

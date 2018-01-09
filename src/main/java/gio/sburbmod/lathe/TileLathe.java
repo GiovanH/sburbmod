@@ -1,18 +1,23 @@
 package gio.sburbmod.lathe;
 
+import gio.sburbmod.pgo.BlockGeneric;
+import gio.sburbmod.pgo.PgoHelper;
+
+//import java.awt.Color;
+import java.util.Arrays;
+
+import javax.annotation.Nullable;
+
 //import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 //import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -24,15 +29,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
-
-import javax.annotation.Nullable;
-
-//import gio.sburbmod.cruxite.DowelPlain;
-import gio.sburbmod.alchemy.Util;
-
-import java.awt.Color;
-//import java.awt.Color;
-import java.util.Arrays;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -94,29 +90,32 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 		}
 
 		if (fuel.getTagCompound().hasKey("Color")) {
-			nbtTagCompound.setInteger("Color", fuel.getTagCompound().getInteger("Color") );
+			nbtTagCompound.setInteger("Color", fuel.getTagCompound().getInteger("Color"));
 		} else {
 			System.err.println("Trying to carve a dowel, but the totem doesn't have a color? :?");
 		}
-		
-		if (input.getTagCompound().hasKey("Code")) {
-			nbtTagCompound.setString("Code", input.getTagCompound().getString("Code") );
+
+		// Done: Migrate from code key to item nbt
+		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Item")) {
+			nbtTagCompound.setTag("Item", input.getTagCompound().getCompoundTag("Item"));
 		} else {
 			System.err.println("Trying to carve a dowel, but the card doesn't have a code? :?");
-			nbtTagCompound.setString("Code", "sburbmod:generic");
+			System.err.println("This may be expected behavior if using an unpunched card.");
+			nbtTagCompound.setTag("Item", PgoHelper.newTagCompound());
 		}
-		
-//		NBTTagCompound tagDisplay = nbtTagCompound.getCompoundTag("display");
-//		if (tagDisplay == null) tagDisplay = new NBTTagCompound();
-//		
-//		NBTTagList lore = new NBTTagList();
-//		lore.appendTag(new NBTTagString("§r\"" + Util.getCaptchaCode(input) + "\""));
-//		tagDisplay.setTag("Lore", lore);
-//		
-//		//tagDisplay.setTag("Name", name);
-//		nbtTagCompound.setTag("display", tagDisplay);
-//		//punchedStack.setTagCompound(nbtTagCompound);
-		//punchedStack.setStackDisplayName("§r" + new TextComponentTranslation("item.sburbmod_punchcard_punched.name").getFormattedText());
+
+		// NBTTagCompound tagDisplay = nbtTagCompound.getCompoundTag("display");
+		// if (tagDisplay == null) tagDisplay = new NBTTagCompound();
+		//
+		// NBTTagList lore = new NBTTagList();
+		// lore.appendTag(new NBTTagString("§r\"" + Util.getCaptchaCode(input) + "\""));
+		// tagDisplay.setTag("Lore", lore);
+		//
+		// //tagDisplay.setTag("Name", name);
+		// nbtTagCompound.setTag("display", tagDisplay);
+		// //punchedStack.setTagCompound(nbtTagCompound);
+		// punchedStack.setStackDisplayName("§r" + new
+		// TextComponentTranslation("item.sburbmod_punchcard_punched.name").getFormattedText());
 
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
@@ -147,15 +146,26 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 					needsUpdate = true;
 				}
 			} else {
-				boolean totemIsBlank = fuel.getItem() instanceof gio.sburbmod.cruxite.DowelPlain && fuel.getItem().getRegistryName().toString().equals("sburbmod:dowel_empty");
-				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCardPunched && input.getTagCompound().hasKey("Code");
-				if (!fuel.isEmpty() && totemIsBlank && cardIsWritten && !input.isEmpty()) {
-					fuel.shrink(1);
-					inputUsed = input.copy();
-					fuelUsed = fuel.copy();
-					//input.shrink(1);
-					// if (fuel.getCount() == 0) {fuel = ItemStack.EMPTY;}
-					cookTime = 1;
+				boolean totemIsBlank = fuel.getItem() instanceof gio.sburbmod.cruxite.DowelPlain
+						&& fuel.getItem().getRegistryName().toString().equals("sburbmod:dowel_empty");
+				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCardPunched
+						&& input.getTagCompound().hasKey("Item");
+				if (!fuel.isEmpty() && totemIsBlank && !input.isEmpty()) {
+					if (cardIsWritten) {
+						fuel.shrink(1);
+						inputUsed = input.copy();
+						fuelUsed = fuel.copy();
+						// input.shrink(1);
+						// if (fuel.getCount() == 0) {fuel = ItemStack.EMPTY;}
+						cookTime = 1;
+					} else if (input.getItem() instanceof gio.sburbmod.punchcard.PunchCard) {
+						fuel.shrink(1);
+						inputUsed = input.copy();
+						fuelUsed = fuel.copy();
+						// input.shrink(1);
+						// if (fuel.getCount() == 0) {fuel = ItemStack.EMPTY;}
+						cookTime = 1;
+					}
 				}
 			}
 		}

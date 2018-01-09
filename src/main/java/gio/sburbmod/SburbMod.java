@@ -1,6 +1,10 @@
 package gio.sburbmod;
 
+import gio.sburbmod.alchemy.Alchemy;
+import gio.sburbmod.alchemy.Recipes;
 import gio.sburbmod.proxy.CommonProxy;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -39,10 +43,11 @@ public class SburbMod {
     public void postInit(FMLPostInitializationEvent event)
     {
       proxy.postInit();
+      Recipes.getInstance();
+      Alchemy.getResultsForAND(Items.GLOWSTONE_DUST, Items.REDSTONE);
+      Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.GLOWSTONE_DUST);
+      Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.REDSTONE);
     }
 	
     public static String prependModID(String name) {return modId + ":" + name;}
-    public void log(String msg) {
-		System.out.println("[Sburb] " + msg);
-    }
 }

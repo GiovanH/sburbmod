@@ -1,6 +1,7 @@
 package gio.sburbmod.punchcard;
 
-import gio.sburbmod.alchemy.Util;
+import gio.sburbmod.alchemy.Captcha;
+import gio.sburbmod.alchemy.SburbItemTooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,7 +19,22 @@ public class PunchCard extends Item {
 
 	public PunchCard() {
 		this.setMaxStackSize(64);
+		this.setHasSubtypes(true);
 		this.setCreativeTab(CreativeTabs.MISC); // the item will appear on the Miscellaneous tab in creative
+	}
+
+//	@Override
+//    public String getUnlocalizedName(ItemStack stack)
+//    {
+//		if (stack.getTagCompound() == null ) return "item.sburbmod_punchcard";
+//        return stack.getTagCompound().hasKey("Item") ? "item.sburbmod_punchcard_punched" : "item.sburbmod_punchcard";
+//    }
+    
+	@Override
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		SburbItemTooltip.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
 	

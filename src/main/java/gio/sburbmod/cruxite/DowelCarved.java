@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import gio.sburbmod.alchemy.Util;
+import gio.sburbmod.alchemy.Captcha;
+import gio.sburbmod.alchemy.SburbItemTooltip;
 import net.minecraft.client.util.ITooltipFlag;
 
 //import java.awt.Color;
@@ -29,16 +30,6 @@ public class DowelCarved extends DowelPlain {
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-
-		NBTTagCompound nbtTagCompound = stack.getTagCompound();
-		if (nbtTagCompound == null) {
-			nbtTagCompound = new NBTTagCompound();
-			stack.setTagCompound(nbtTagCompound);
-		}
-		if (nbtTagCompound.hasKey("Code")) {
-			String code = nbtTagCompound.getString("Code");
-			tooltip.add("§o" + code + "");
-			tooltip.add("§o\"" + Util.getCaptchaCode(code) + "\"");
-		}
+		SburbItemTooltip.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 }

@@ -26,7 +26,6 @@ import javax.annotation.Nullable;
 
 //import gio.sburbmod.cruxite.DowelPlain;
 
-import java.awt.Color;
 import java.util.Arrays;
 
 /**
@@ -76,17 +75,18 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 	}
 
 	private void extrude(ItemStack input) {
-		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Code")) {
-			String resource = input.getTagCompound().getString("Code");
-			if (resource == null)
-				resource = "sburbmod:generic";
-			Item outputItem = Item.REGISTRY.getObject(new ResourceLocation(resource));
+		//TODO: Migrate from code key to item nbt
+		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Item")) {
+			ItemStack transcribed = new ItemStack(input.getTagCompound().getCompoundTag("Item"));
+//			if (resource == null)
+//				resource = "sburbmod:generic";
+//			Item outputItem = Item.REGISTRY.getObject(new ResourceLocation(resource));
 			// System.out.println(cruxItem.toString());
 
-			ItemStack outputStack = new ItemStack(outputItem, 1);
+			//ItemStack outputStack = new ItemStack(outputItem, 1);
 			// System.out.println(cruxiteStack.toString());
 
-			setInventorySlotContents(FIRST_OUTPUT_SLOT, outputStack);
+			setInventorySlotContents(FIRST_OUTPUT_SLOT, transcribed);
 		} else {
 			// error
 		}
@@ -106,7 +106,8 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		ItemStack input = itemStacks[FIRST_INPUT_SLOT];
 
 		if (output.isEmpty()) {
-			if (input.isEmpty() || inputItem.getItem() != input.getItem()) cookTime = 0;
+			
+			if (input.isEmpty() || inputItem == null || inputItem.getItem() != input.getItem()) cookTime = 0; //Start if there's a different item or an empty item
 			if (cookTime == 0 && input.getItem() instanceof gio.sburbmod.cruxite.DowelCarved) {
 				inputItem = input;
 				cookTime++;

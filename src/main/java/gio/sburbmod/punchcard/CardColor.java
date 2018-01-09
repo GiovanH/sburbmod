@@ -23,10 +23,10 @@ public class CardColor implements IItemColor {
 				return Color.WHITE.getRGB();
 			case 1: {
 				NBTTagCompound nbtTagCompound = stack.getTagCompound();
-				if (nbtTagCompound == null || !nbtTagCompound.hasKey("Code"))
+				if (nbtTagCompound == null || !nbtTagCompound.hasKey("Item"))
 					return Color.CYAN.getRGB();
 
-				String code = nbtTagCompound.getString("Code");
+				String code = nbtTagCompound.getTag("Item").toString();
 				long hash = Algorithms.hashString(code, 10000);
 				float hue = (float)hash/100; //Todo; make this readable
 				//System.out.println(String.valueOf(hue));

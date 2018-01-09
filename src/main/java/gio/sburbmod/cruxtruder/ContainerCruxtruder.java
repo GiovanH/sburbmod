@@ -55,6 +55,7 @@ public class ContainerCruxtruder extends Container {
 	private final int VANILLA_FIRST_SLOT_INDEX = 0;
 	private final int FIRST_FUEL_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 	private final int FIRST_INPUT_SLOT_INDEX = FIRST_FUEL_SLOT_INDEX + FUEL_SLOTS_COUNT;
+	@SuppressWarnings("unused")
 	private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT;
 
 	// slot number is the slot number within each component; i.e. invPlayer slots 0

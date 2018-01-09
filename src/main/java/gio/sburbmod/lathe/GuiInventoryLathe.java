@@ -21,7 +21,7 @@ import java.util.List;
 public class GuiInventoryLathe extends GuiContainer {
 
 	// This is the resource location for the background image
-	private static final ResourceLocation texture = new ResourceLocation("sburbmod", "textures/gui/cardpuncher_bg.png");
+	private static final ResourceLocation texture = new ResourceLocation("sburbmod", "textures/gui/lathe_bg.png");
 	private TileLathe tileEntity;
 
 	public GuiInventoryLathe(InventoryPlayer invPlayer, TileLathe tilePuncher) {

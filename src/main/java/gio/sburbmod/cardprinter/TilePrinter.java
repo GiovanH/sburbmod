@@ -60,6 +60,7 @@ public class TilePrinter extends TileEntity implements IInventory, ITickable {
 	/** The number of ticks required to cook an item */
 	private static final short COOK_TIME_FOR_COMPLETION = 150; // vanilla value is 200 = 10 seconds
 	private static final short STACK_FUEL_VALUE = 110; // vanilla value is 200 = 10 seconds
+	private static final short SINGLE_FUEL_VALUE = 300; // vanilla value is 200 = 10 seconds
 	private static final short ADDITIONAL_TIME_WITH_WEAR = 20; // vanilla value is 200 = 10 seconds
 
 	private ItemStack[] itemStacks;
@@ -113,7 +114,8 @@ public class TilePrinter extends TileEntity implements IInventory, ITickable {
 		ItemStack output = itemStacks[FIRST_OUTPUT_SLOT];
 		ItemStack input = itemStacks[FIRST_INPUT_SLOT];
 
-		if (input.getCount() == 64) {
+		// if (input.getCount() == 64) {
+		if (input.getCount() >= 1) {
 			itemStacks[FIRST_INPUT_SLOT] = ItemStack.EMPTY;
 			fuelTime += STACK_FUEL_VALUE;
 		}
@@ -296,7 +298,8 @@ public class TilePrinter extends TileEntity implements IInventory, ITickable {
 		// Save everything else
 		parentNBTTagCompound.setShort("CookTime", cookTime);
 		parentNBTTagCompound.setShort("FuelTime", fuelTime);
-		if (uses != 0) parentNBTTagCompound.setInteger("Uses", uses);
+		if (uses != 0)
+			parentNBTTagCompound.setInteger("Uses", uses);
 		return parentNBTTagCompound;
 	}
 

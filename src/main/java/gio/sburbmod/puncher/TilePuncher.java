@@ -1,18 +1,20 @@
 package gio.sburbmod.puncher;
 
+//import java.awt.Color;
+import java.util.Arrays;
+
+import javax.annotation.Nullable;
+
 //import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 //import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -24,14 +26,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
-
-import javax.annotation.Nullable;
-
-//import gio.sburbmod.cruxite.DowelPlain;
-import gio.sburbmod.alchemy.Util;
-
-//import java.awt.Color;
-import java.util.Arrays;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import gio.sburbmod.punchcard.PunchCard;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -80,7 +76,8 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 	}
 
 	private void extrude(ItemStack input) {
-		Item cruxItem = Item.REGISTRY.getObject(new ResourceLocation("sburbmod:punchcard_punched"));
+		//Item cruxItem = Item.REGISTRY.getObject(new ResourceLocation("sburbmod:punchcard_punched"));
+		Item cruxItem = new PunchCard();
 		// System.out.println(cruxItem.toString());
 
 		ItemStack punchedStack = new ItemStack(cruxItem, 1);
@@ -91,21 +88,16 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 			nbtTagCompound = new NBTTagCompound();
 			punchedStack.setTagCompound(nbtTagCompound);
 		}
-		
-		nbtTagCompound.setString("Code", input.getItem().getRegistryName().toString());
-		
-//		NBTTagCompound tagDisplay = nbtTagCompound.getCompoundTag("display");
-//		if (tagDisplay == null) tagDisplay = new NBTTagCompound();
-//		
-//		NBTTagList lore = new NBTTagList();
-//		lore.appendTag(new NBTTagString("§r\"" + Util.getCaptchaCode(input) + "\""));
-//		tagDisplay.setTag("Lore", lore);
-//		
-//		//tagDisplay.setTag("Name", name);
-//		nbtTagCompound.setTag("display", tagDisplay);
-//		//punchedStack.setTagCompound(nbtTagCompound);
-		//punchedStack.setStackDisplayName("§r" + new TextComponentTranslation("item.sburbmod_punchcard_punched.name").getFormattedText());
 
+		//DONE: Migrate from code key to item nbt
+		//nbtTagCompound.setString("Code", input.getItem().getRegistryName().toString());
+
+		NBTTagCompound inputItemItemTag = new NBTTagCompound();
+		if (input != null)
+			input.setCount(1);
+			input.writeToNBT(inputItemItemTag);
+		nbtTagCompound.setTag("Item", inputItemItemTag);
+		
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
 
@@ -418,6 +410,7 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 	// If you need more than this, or shorts are too small, use a custom packet in
 	// your container instead.
 
+	@SuppressWarnings("unused")
 	private static final byte COOK_FIELD_ID = 0;
 	private static final byte FIRST_BURN_TIME_REMAINING_FIELD_ID = 1;
 	private static final byte FIRST_BURN_TIME_INITIAL_FIELD_ID = FIRST_BURN_TIME_REMAINING_FIELD_ID

@@ -93,7 +93,7 @@ public class TileCruxtruder extends TileEntity implements IInventory, ITickable 
 		}
 
 		float hue = ((float)(playerHash - ((playerHash/1000)*1000)))/1000; //Todo; make this readable
-		System.out.println(String.valueOf(hue));
+		//System.out.println(String.valueOf(hue));
 		nbtTagCompound.setInteger("Color", Color.HSBtoRGB(hue, 1, 1));
 
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, cruxiteStack);

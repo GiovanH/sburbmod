@@ -1,9 +1,10 @@
 package gio.sburbmod.punchcard;
 
-import gio.sburbmod.alchemy.Util;
+import gio.sburbmod.alchemy.Captcha;
+import gio.sburbmod.alchemy.SburbItemTooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+//import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -22,21 +23,11 @@ public class PunchCardPunched extends PunchCard {
 	}
 	
 	
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-
-		NBTTagCompound nbtTagCompound = stack.getTagCompound();
-		if (nbtTagCompound == null) {
-			nbtTagCompound = new NBTTagCompound();
-			stack.setTagCompound(nbtTagCompound);
-		}
-		if (nbtTagCompound.hasKey("Code")) {
-			String code = nbtTagCompound.getString("Code");
-			tooltip.add("§o" + code + "");
-			tooltip.add("§o\"" + Util.getCaptchaCode(code) + "\"");
-		}
-	}
-	
 }
+
+// inputUsed = new ItemStack(nbtTagCompound.getCompoundTag("ItemUsed"));
+
+//NBTTagCompound inputItemItemTag = new NBTTagCompound();
+//if (inputUsed != null)
+//	inputUsed.writeToNBT(inputItemItemTag);
+//parentNBTTagCompound.setTag("ItemUsed", inputItemItemTag);

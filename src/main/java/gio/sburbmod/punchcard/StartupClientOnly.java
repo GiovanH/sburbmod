@@ -33,5 +33,6 @@ public class StartupClientOnly {
 
 	public static void postInitClientOnly() {
 		 Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new CardColor(), StartupCommon.punchCardPunched);
+		 //Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new CardColor(), StartupCommon.punchCardUnified);
 	}
 }

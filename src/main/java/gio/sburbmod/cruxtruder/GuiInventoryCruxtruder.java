@@ -36,7 +36,7 @@ public class GuiInventoryCruxtruder extends GuiContainer {
 	}
 
 	// some [x,y] coordinates of graphical elements
-	final int COOK_BAR_XPOS = 61;
+	final int COOK_BAR_XPOS = 57;
 	final int COOK_BAR_YPOS = 57;
 	final int COOK_BAR_ICON_U = 176; // texture position of white arrow icon
 	final int COOK_BAR_ICON_V = 0;

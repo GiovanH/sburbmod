@@ -99,7 +99,7 @@ public class ContainerPrinter extends Container {
 		}
 
 		final int OUTPUT_SLOTS_XPOS = 80;
-		final int OUTPUT_SLOTS_YPOS = 38;
+		final int OUTPUT_SLOTS_YPOS = 34;
 		// Add the tile output slots
 		for (int y = 0; y < OUTPUT_SLOTS_COUNT; y++) {
 			int slotNumber = FIRST_OUTPUT_SLOT_NUMBER;
