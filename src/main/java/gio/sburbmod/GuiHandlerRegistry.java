@@ -15,7 +15,6 @@ import java.util.HashMap;
  *   so each GUI is given a unique GuiID which is used to create the correct element.
  * The GuiHandlerRegistry is registered with Forge using
  * 		NetworkRegistry.INSTANCE.registerGuiHandler(ReferenceMod.instance, new GuiHandlerRegistry());
- * Each of the examples, with its own GuiHandler, registers itself with the GuiHandlerRegistry.
  * When GuiHandlerRegistry receives a call from Forge, it passes it to the appropriate example's GuiHandler.
  */
 public class GuiHandlerRegistry implements IGuiHandler {

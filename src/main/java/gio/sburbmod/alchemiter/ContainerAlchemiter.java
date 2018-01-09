@@ -10,13 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * User: brandon3055 Date: 06/01/2015
- *
- * ContainerSmelting is used to link the client side gui to the server side
- * inventory and it is where you add the slots holding items. It is also used to
- * send server side data such as progress bars to the client for use in guis
- */
 public class ContainerAlchemiter extends Container {
 
 	// Stores the tile entity instance for later use
@@ -117,17 +110,8 @@ public class ContainerAlchemiter extends Container {
 
 	// This is where you specify what happens when a player shift clicks a slot in
 	// the gui
-	// (when you shift click a slot in the TileEntity Inventory, it moves it to the
-	// first available position in the hotbar and/or
-	// player inventory. When you you shift-click a hotbar or player inventory item,
-	// it moves it to the first available
-	// position in the TileEntity inventory - either input or fuel as appropriate
-	// for the item you clicked)
 	// At the very least you must override this and return EMPTY_ITEM or the game
 	// will crash when the player shift clicks a slot
-	// returns EMPTY_ITEM if the source slot is empty, or if none of the source slot
-	// items could be moved.
-	// otherwise, returns a copy of the source stack
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
 		Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
@@ -141,7 +125,6 @@ public class ContainerAlchemiter extends Container {
 				&& sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
 			// This is a vanilla container slot so merge the stack into one of the furnace
 			// slots
-			// If the stack is smeltable try to merge merge the stack into the input slots
 			if (!sourceStack.isEmpty()) { // isEmptyItem
 				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
 						false)) {

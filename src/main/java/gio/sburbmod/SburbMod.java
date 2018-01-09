@@ -1,5 +1,8 @@
 package gio.sburbmod;
-
+/**
+ * Author: GiovanH
+ * Core Sburbmod Handler
+ */
 import gio.sburbmod.alchemy.Alchemy;
 import gio.sburbmod.alchemy.Recipes;
 import gio.sburbmod.proxy.CommonProxy;
@@ -43,7 +46,9 @@ public class SburbMod {
     public void postInit(FMLPostInitializationEvent event)
     {
       proxy.postInit();
-      Recipes.getInstance();
+      Recipes.getInstance(); //Init alchemy recipe reg
+      
+      //test some alchemy:
       Alchemy.getResultsForAND(Items.GLOWSTONE_DUST, Items.REDSTONE);
       Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.GLOWSTONE_DUST);
       Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.REDSTONE);

@@ -13,12 +13,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * User: brandon3055 Date: 06/01/2015
- *
- * GuiInventoryAdvanced is a gui similar to that of a furnace. It has a progress
- * bar and a burn time indicator. Both indicators have mouse over text
- */
 @SideOnly(Side.CLIENT)
 public class GuiInventoryAlchemiter extends GuiContainer {
 
@@ -61,11 +55,6 @@ public class GuiInventoryAlchemiter extends GuiContainer {
 		drawTexturedModalRect(guiLeft + COOK_BAR_XPOS+COOK_BAR_WIDTH, guiTop + COOK_BAR_YPOS + yOffset, COOK_BAR_ICON_U,
 				COOK_BAR_ICON_V + yOffset+COOK_BAR_HEIGHT, COOK_BAR_WIDTH, COOK_BAR_HEIGHT - yOffset);
 
-		// get cook progress as a double between 0 and 1
-//		double burnRemaining = tileEntity.fractionOfFuelRemaining();
-//		yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
-//		drawTexturedModalRect(guiLeft + FLAME_XPOS, guiTop + FLAME_YPOS + yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset,
-//				FLAME_WIDTH, FLAME_HEIGHT - yOffset);
 	}
 
 	@Override
@@ -87,31 +76,12 @@ public class GuiInventoryAlchemiter extends GuiContainer {
 //			hoveringText.add(cookPercentage + "%");
 //		}
 		
-
-		// If the mouse is over one of the burn time indicator add the burn time
-		// indicator hovering text
-		// for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-		// if (isInRect(guiLeft + FLAME_XPOS + FLAME_X_SPACING * i, guiTop + FLAME_YPOS,
-		// FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
-		// hoveringText.add("Fuel Time:");
-		// hoveringText.add(tileEntity.secondsOfFuelRemaining(i) + "s");
-		// }
-		// }
 		// If hoveringText is not empty draw the hovering text
 		if (!hoveringText.isEmpty()) {
 			drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
 		}
-		// // You must re bind the texture and reset the colour if you still need to use
-		// it after drawing a string
-		// Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
-		// GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.renderHoveredToolTip(mouseX- guiLeft, mouseY- guiTop);
-		
-//		if (this.mc.player.inventory.getItemStack().isEmpty() && this.hoveredSlot != null && this.hoveredSlot.getHasStack())
-//        {
-//            this.renderToolTip(this.hoveredSlot.getStack(), p_191948_1_, p_191948_2_);
-//        }
 
+        this.renderHoveredToolTip(mouseX- guiLeft, mouseY- guiTop);
 	}
 
 	// Returns true if the given x,y coordinates are within the given rectangle

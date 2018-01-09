@@ -32,23 +32,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 //import javax.annotation.Nullable;
 
 /**
- * User: brandon3055 Date: 06/01/2015
- *
- * BlockInventoryAdvanced is an advanced furnace with 5 input, 4 output and 4
- * fuel slots that smelts at twice the speed of a regular furnace. The block
- * itself doesn't do much more then any regular block except create a tile
- * entity when placed, open a gui when right clicked and drop tne inventory's
- * contents when harvested. Everything else is handled by the tile entity.
- *
- * The block model will change appearance depending on how many fuel slots are
- * burning. The amount of "block light" produced by the furnace will also
- * depending on how many fuel slots are burning.
- *
- * //Note that in 1.10.*, extending BlockContainer can cause rendering problems
- * if you don't extend getRenderType() // If you don't want to extend
- * BlockContainer, make sure to add the tile entity manually, // using
- * hasTileEntity() and createTileEntity(). See BlockContainer for a couple of
- * other important methods you may // need to implement.
+ * Author: GiovanH
+ * 
+ * The Alchemiter (n.b. not "alchimeter") uses a carved cruxite dowel to create a real item.
+ * 
+ * In future versions this should cost grist based on the item's component parts.
  */
 public class BlockAlchemiter extends BlockContainer {
 	public BlockAlchemiter() {
@@ -66,16 +54,13 @@ public class BlockAlchemiter extends BlockContainer {
 	}
 
 	// Called when the block is right clicked
-	// In this block it is used to open the blocks gui when right clicked by a
-	// player
+	// Opens GUI
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 
-		// Uses the gui handler registered to your mod to open the gui for the given gui
-		// id
-		// open on the server side only (not sure why you shouldn't open client side
-		// too... vanilla doesn't, so we better not either)
+		// Uses the gui handler registered to your mod to open the gui for the given gui id
+		// open on the server side only (reason for this is unknown)
 		if (worldIn.isRemote)
 			return true;
 
@@ -83,8 +68,7 @@ public class BlockAlchemiter extends BlockContainer {
 		return true;
 	}
 
-	// This is where you can do something when the block is broken. In this case
-	// drop the inventory's contents
+	//Drop inventory when broken
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tileEntity = worldIn.getTileEntity(pos);

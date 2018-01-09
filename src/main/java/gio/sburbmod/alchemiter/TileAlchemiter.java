@@ -29,15 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 
 /**
- * User: brandon3055 Date: 06/01/2015
- *
- * TileInventorySmelting is an advanced sided inventory that works like a
- * vanilla furnace except that it has 5 input and output slots, 4 fuel slots and
- * cooks at up to four times the speed. The input slots are used sequentially
- * rather than in parallel, i.e. the first slot cooks, then the second, then the
- * third, etc The fuel slots are used in parallel. The more slots burning in
- * parallel, the faster the cook time. The code is heavily based on
- * TileEntityFurnace.
+ * 
  */
 public class TileAlchemiter extends TileEntity implements IInventory, ITickable {
 	// Create and initialize the itemStacks variable that will store store the
@@ -75,17 +67,9 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 	}
 
 	private void extrude(ItemStack input) {
-		//TODO: Migrate from code key to item nbt
+		// TODO: Migrate from code key to item nbt
 		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Item")) {
 			ItemStack transcribed = new ItemStack(input.getTagCompound().getCompoundTag("Item"));
-//			if (resource == null)
-//				resource = "sburbmod:generic";
-//			Item outputItem = Item.REGISTRY.getObject(new ResourceLocation(resource));
-			// System.out.println(cruxItem.toString());
-
-			//ItemStack outputStack = new ItemStack(outputItem, 1);
-			// System.out.println(cruxiteStack.toString());
-
 			setInventorySlotContents(FIRST_OUTPUT_SLOT, transcribed);
 		} else {
 			// error
@@ -95,28 +79,23 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 	private boolean needsUpdate = false;
 	private ItemStack inputItem;
 
-	// This method is called every tick to update the tile entity, i.e.
-	// - see if the fuel has run out, and if so turn the furnace "off" and slowly
-	// uncook the current item (if any)
-	// - see if any of the items have finished smelting
-	// It runs both on the server and the client.
 	@Override
 	public void update() {
 		ItemStack output = itemStacks[FIRST_OUTPUT_SLOT];
 		ItemStack input = itemStacks[FIRST_INPUT_SLOT];
 
 		if (output.isEmpty()) {
-			
-			if (input.isEmpty() || inputItem == null || inputItem.getItem() != input.getItem()) cookTime = 0; //Start if there's a different item or an empty item
+			//If the input is empty, there's no cached item, or the input item has changed...
+			if (input.isEmpty() || inputItem == null || inputItem.getItem() != input.getItem())
+				cookTime = 0; //...restart the timer and stop it.
+			//If the timer is stopped, and the input item is a dowel, tick.
 			if (cookTime == 0 && input.getItem() instanceof gio.sburbmod.cruxite.DowelCarved) {
 				inputItem = input;
 				cookTime++;
 			}
-
 			if (cookTime > 0) {
 				// We've extruded for one tick.
 				cookTime++;
-
 				if (cookTime >= COOK_TIME_FOR_COMPLETION) {
 					extrude(inputItem);
 					cookTime = 0;
@@ -291,6 +270,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		// Save everything else
 		parentNBTTagCompound.setShort("CookTime", cookTime);
 
+		//Write the cached input item to a special tag
 		NBTTagCompound inputItemItemTag = new NBTTagCompound();
 		if (inputItem != null)
 			inputItem.writeToNBT(inputItemItemTag);
@@ -318,9 +298,20 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		// Load everything else. Trim the arrays (or pad with 0) to make sure they have
 		// the correct number of elements
 		cookTime = nbtTagCompound.getShort("CookTime");
+		//Read the cached input item
 		inputItem = new ItemStack(nbtTagCompound.getCompoundTag("ItemUsed"));
 	}
 
+
+	// will add a key for this container to the lang file so we can name it in the
+	// GUI
+	@Override
+	public String getName() {
+		return "container.sburbmod_alchemiter.name";
+	}
+	
+	// ===========================Everything else here is boring! lame.
+	
 	// // When the world loads from disk, the server needs to send the TileEntity
 	// information to the client
 	// // it uses getUpdatePacket(), getUpdateTag(), onDataPacket(), and
@@ -368,12 +359,6 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		Arrays.fill(itemStacks, ItemStack.EMPTY); // EMPTY_ITEM
 	}
 
-	// will add a key for this container to the lang file so we can name it in the
-	// GUI
-	@Override
-	public String getName() {
-		return "container.sburbmod_alchemiter.name";
-	}
 
 	@Override
 	public boolean hasCustomName() {
