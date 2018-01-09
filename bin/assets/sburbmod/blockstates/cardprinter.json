@@ -1,6 +1,0 @@
-{
-    "variants": {
-           "inventory_filled=0": { "model": "sburbmod:cardprinter_model_0"},
-           "inventory_filled=1": { "model": "sburbmod:cardprinter_model_1"}
-    }
-}

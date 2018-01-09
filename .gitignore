@@ -1,5 +1,4 @@
-run/logs/*
-run
+gitignore/*
 
 # Windows image file caches
 Thumbs.db
