@@ -92,7 +92,7 @@ public class TilePrinter extends TileEntity implements IInventory, ITickable {
 	}
 
 	private void extrude() {
-		Item cruxItem = gio.sburbmod.punchcard.StartupCommon.unPunchCard;
+		Item cruxItem = gio.sburbmod.punchcard.StartupCommon.punchCard;
 		// System.out.println(cruxItem.toString());
 
 		ItemStack cruxiteStack = new ItemStack(cruxItem, 1);

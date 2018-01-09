@@ -148,7 +148,7 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 			} else {
 				boolean totemIsBlank = fuel.getItem() instanceof gio.sburbmod.cruxite.DowelPlain
 						&& fuel.getItem().getRegistryName().toString().equals("sburbmod:dowel_empty");
-				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCardPunched
+				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCard
 						&& input.getTagCompound().hasKey("Item");
 				if (!fuel.isEmpty() && totemIsBlank && !input.isEmpty()) {
 					if (cardIsWritten) {

@@ -20,6 +20,7 @@ public class Captcha {
 			'Y', 'Z', '?', '!' };
 
 	public static String getCaptchaCode(long seed) {
+		seed = Math.abs(seed);
 		final int BASE = 64;
 		// int[] code_i = new int[LEN];
 		char[] code = new char[CODE_LENGTH];
@@ -62,7 +63,7 @@ public class Captcha {
 	public static String getCaptchaCode(ItemStack input) {
 		if (PgoHelper.isInstance(input))
 			return specialCode(specialCodes.PGO);
-		if (input.getItem().getRegistryName() == gio.sburbmod.punchcard.StartupCommon.unPunchCard.getRegistryName())
+		if (input.getItem().getRegistryName() == gio.sburbmod.punchcard.StartupCommon.punchCard.getRegistryName())
 			return specialCode(specialCodes.CARD);
 		// TODO: Migrate from code key to item nbt
 		// StringBuilder extradata = new StringBuilder();

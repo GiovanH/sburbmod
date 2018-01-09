@@ -41,7 +41,7 @@ import java.util.Arrays;
  * TileEntityFurnace.
  */
 public class TileCruxtruder extends TileEntity implements IInventory, ITickable {
-	private static final boolean CRUXTRUDER_DEBUG = true;
+	private static final boolean CRUXTRUDER_DEBUG = false;
 	// Create and initialize the itemStacks variable that will store store the
 	// itemStacks
 	public static final int FUEL_SLOTS_COUNT = 0;
@@ -92,8 +92,8 @@ public class TileCruxtruder extends TileEntity implements IInventory, ITickable 
 			cruxiteStack.setTagCompound(nbtTagCompound);
 		}
 
-		float hue = ((float)(playerHash - ((playerHash/1000)*1000)))/1000; //Todo; make this readable
-		//System.out.println(String.valueOf(hue));
+		float hue = ((float) (playerHash - ((playerHash / 1000) * 1000))) / 1000; // Todo; make this readable
+		// System.out.println(String.valueOf(hue));
 		nbtTagCompound.setInteger("Color", Color.HSBtoRGB(hue, 1, 1));
 
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, cruxiteStack);
@@ -474,5 +474,10 @@ public class TileCruxtruder extends TileEntity implements IInventory, ITickable 
 			System.out.println("Set hash to " + playerHash);
 
 	}
+
+	public void setNeedsUpdate() {
+		this.needsUpdate = true;
+	}
+
 
 }

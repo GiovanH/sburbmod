@@ -157,7 +157,7 @@ public class ContainerLathe extends Container {
 								true)) {
 					// Setting the boolean to true places the stack in the bottom slot first
 					return ItemStack.EMPTY; // EMPTY_ITEM;
-				} else if (sourceStack.getItem() instanceof gio.sburbmod.punchcard.PunchCardPunched
+				} else if (sourceStack.getItem() instanceof gio.sburbmod.punchcard.PunchCard
 						&& !mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX,
 								FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT, false)) {
 					return ItemStack.EMPTY; // EMPTY_ITEM;

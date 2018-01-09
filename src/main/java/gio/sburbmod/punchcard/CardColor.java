@@ -24,7 +24,7 @@ public class CardColor implements IItemColor {
 			case 1: {
 				NBTTagCompound nbtTagCompound = stack.getTagCompound();
 				if (nbtTagCompound == null || !nbtTagCompound.hasKey("Item"))
-					return Color.CYAN.getRGB();
+					return Color.GRAY.getRGB();
 
 				String code = nbtTagCompound.getTag("Item").toString();
 				long hash = Algorithms.hashString(code, 10000);
