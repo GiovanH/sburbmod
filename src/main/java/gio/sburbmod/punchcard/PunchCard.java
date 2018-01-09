@@ -1,17 +1,15 @@
 package gio.sburbmod.punchcard;
 
-import gio.sburbmod.alchemy.Captcha;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import gio.sburbmod.alchemy.SburbItemTooltip;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
 
 public class PunchCard extends Item {
 

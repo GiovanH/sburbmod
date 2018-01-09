@@ -77,7 +77,7 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 	}
 
 	private void extrude(ItemStack input, ItemStack fuel) {
-		Item cruxItem = Item.REGISTRY.getObject(new ResourceLocation("sburbmod:dowel_carved"));
+		Item cruxItem = gio.sburbmod.cruxite.StartupCommon.dowelCarved;
 		// System.out.println(cruxItem.toString());
 
 		ItemStack punchedStack = new ItemStack(cruxItem, 1);

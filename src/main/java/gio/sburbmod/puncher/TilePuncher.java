@@ -76,8 +76,8 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 	}
 
 	private void extrude(ItemStack input) {
-		//Item cruxItem = Item.REGISTRY.getObject(new ResourceLocation("sburbmod:punchcard_punched"));
-		Item cruxItem = new PunchCard();
+		Item cruxItem = gio.sburbmod.punchcard.StartupCommon.punchCardPunched;
+		//Item cruxItem = new PunchCard();
 		// System.out.println(cruxItem.toString());
 
 		ItemStack punchedStack = new ItemStack(cruxItem, 1);

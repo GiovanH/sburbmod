@@ -80,7 +80,7 @@ public class TileCruxtruder extends TileEntity implements IInventory, ITickable 
 	}
 
 	private void extrude() {
-		Item cruxItem = Item.REGISTRY.getObject(new ResourceLocation("sburbmod:dowel_empty"));
+		Item cruxItem = gio.sburbmod.cruxite.StartupCommon.dowelPlain;
 		// System.out.println(cruxItem.toString());
 
 		ItemStack cruxiteStack = new ItemStack(cruxItem, 1);
