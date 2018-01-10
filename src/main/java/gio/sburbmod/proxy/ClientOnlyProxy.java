@@ -31,6 +31,7 @@ public class ClientOnlyProxy extends CommonProxy {
 		gio.sburbmod.puncher.StartupClientOnly.preInitClientOnly();
 		gio.sburbmod.lathe.StartupClientOnly.preInitClientOnly();
 		gio.sburbmod.alchemiter.StartupClientOnly.preInitClientOnly();
+		gio.sburbmod.alchtable.StartupClientOnly.preInitClientOnly();
 	}
 
 	/**
@@ -51,6 +52,7 @@ public class ClientOnlyProxy extends CommonProxy {
 		gio.sburbmod.puncher.StartupClientOnly.initClientOnly();
 		gio.sburbmod.lathe.StartupClientOnly.initClientOnly();
 		gio.sburbmod.alchemiter.StartupClientOnly.initClientOnly();
+		gio.sburbmod.alchtable.StartupClientOnly.preInitClientOnly();
 	}
 
 	/**
@@ -70,6 +72,7 @@ public class ClientOnlyProxy extends CommonProxy {
 		gio.sburbmod.puncher.StartupClientOnly.postInitClientOnly();
 		gio.sburbmod.lathe.StartupClientOnly.postInitClientOnly();
 		gio.sburbmod.alchemiter.StartupClientOnly.postInitClientOnly();
+		gio.sburbmod.alchtable.StartupClientOnly.preInitClientOnly();
 	}
 
 	@Override

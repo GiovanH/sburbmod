@@ -35,7 +35,7 @@ public class Captcha {
 	}
 
 	enum specialCodes {
-		ZEROES, PGO, CARD
+		PGO, CARD
 	}
 
 	public static String getCaptchaCode(String input) {
@@ -65,9 +65,8 @@ public class Captcha {
 			return specialCode(specialCodes.PGO);
 		if (input.getItem().getRegistryName() == gio.sburbmod.punchcard.StartupCommon.punchCard.getRegistryName())
 			return specialCode(specialCodes.CARD);
-		// TODO: Migrate from code key to item nbt
-		// StringBuilder extradata = new StringBuilder();
-		return getCaptchaCode(input.getItem().getRegistryName().toString());
+
+		return getCaptchaCode(input.getItem().getRegistryName().toString().hashCode());
 	}
 
 }

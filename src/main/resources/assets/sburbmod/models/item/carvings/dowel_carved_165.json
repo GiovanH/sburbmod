@@ -1,0 +1,7 @@
+{"parent": "item/generated",
+"textures": {
+    "layer0": "sburbmod:items/carvings/carvings_1_2",
+    "layer1": "sburbmod:items/carvings/carvings_2_5",
+    "layer2": "sburbmod:items/carvings/carvings_3_6",
+    "layer3": "sburbmod:items/carvings/carvings_4_1"
+}}

@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
-import gio.sburbmod.alchemy.Algorithms;
+import gio.sburbmod.punchcard.PunchCard;
 //import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -92,10 +92,8 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 			input.setCount(1);
 		input.writeToNBT(inputItemItemTag);
 		nbtTagCompound.setTag("Item", inputItemItemTag);
-		int dmg = 1 + (int) Algorithms.hashString(input.toString(),
-				gio.sburbmod.punchcard.StartupCommon.punchCard.getVariants());
-		punchedStack.setItemDamage(dmg);
-
+		
+		PunchCard.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
 

@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "sburbmod:items/punched_card_1",
-        "layer1": "sburbmod:items/punched_card_color"
-    }
-}

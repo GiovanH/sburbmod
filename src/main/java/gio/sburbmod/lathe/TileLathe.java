@@ -1,5 +1,6 @@
 package gio.sburbmod.lathe;
 
+import gio.sburbmod.cruxite.DowelCarved;
 import gio.sburbmod.pgo.BlockGeneric;
 import gio.sburbmod.pgo.PgoHelper;
 
@@ -116,7 +117,7 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 		// //punchedStack.setTagCompound(nbtTagCompound);
 		// punchedStack.setStackDisplayName("§r" + new
 		// TextComponentTranslation("item.sburbmod_punchcard_punched.name").getFormattedText());
-
+		DowelCarved.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
 

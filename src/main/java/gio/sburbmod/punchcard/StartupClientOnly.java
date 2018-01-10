@@ -19,12 +19,15 @@ public class StartupClientOnly {
 		// required in order for the renderer to know how to render your item.
 
 		final int DEFAULT_ITEM_SUBTYPE = 0;
-		final int VARIANTS = 3;
+		final int VARIANTS = PunchCard.getVariants();
+		final String PUNCHED_BASE_RESOURCE = "sburbmod:holes/punched_card_";
 		ModelLoader.setCustomModelResourceLocation(StartupCommon.punchCard, DEFAULT_ITEM_SUBTYPE,
 				new ModelResourceLocation("sburbmod:unpunched_card", "inventory"));
-		for (int i = 0; i <= VARIANTS; i++) {
-			ModelLoader.setCustomModelResourceLocation(StartupCommon.punchCard, DEFAULT_ITEM_SUBTYPE + i+1,
-					new ModelResourceLocation("sburbmod:punched_card_" + i, "inventory"));
+		for (int i = 1; i <= VARIANTS; i++) {
+			int subtype = DEFAULT_ITEM_SUBTYPE + i;
+					System.out.println(PUNCHED_BASE_RESOURCE + i + "/" + subtype);
+			ModelLoader.setCustomModelResourceLocation(StartupCommon.punchCard, subtype,
+					new ModelResourceLocation(PUNCHED_BASE_RESOURCE + i, "inventory"));
 		}
 
 		// ModelLoader.setCustomModelResourceLocation(StartupCommon.punchCardPunched,
