@@ -121,6 +121,7 @@ public class ContainerCruxtruder extends Container {
 	// otherwise, returns a copy of the source stack
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex) {
+		this.tileCruxtruder.setNeedsUpdate();
 		Slot sourceSlot = (Slot) inventorySlots.get(sourceSlotIndex);
 		if (sourceSlot == null || !sourceSlot.getHasStack())
 			return ItemStack.EMPTY; // EMPTY_ITEM

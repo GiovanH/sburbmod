@@ -1,0 +1,9 @@
+{"parent": "item/generated",
+"textures": {"layer0": "sburbmod:items/punched_card_color",
+        "layer1": "sburbmod:items/punched_card_whiteback",
+    "layer2": "sburbmod:items/holes/holes_1_10",
+    "layer3": "sburbmod:items/holes/holes_2_11",
+    "layer4": "sburbmod:items/holes/holes_3_11",
+    "layer5": "sburbmod:items/holes/holes_4_10",
+    "layer6": "sburbmod:items/holes/holes_5_01"
+}}

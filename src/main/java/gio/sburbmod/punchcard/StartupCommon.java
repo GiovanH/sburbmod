@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  * information
  */
 public class StartupCommon {
-	public static PunchCard unPunchCard; // this holds the unique instance of your block
-	public static PunchCardPunched punchCardPunched; // this holds the unique instance of your block
+	public static PunchCard punchCard; // this holds the unique instance of your block
+//	public static PunchCard punchCardPunched = punchCard; // this holds the unique instance of your block
 	//public static PunchCard punchCardUnified;
 
 	public static void preInitCommon() {
@@ -32,17 +32,17 @@ public class StartupCommon {
 		// | extinguished_candle + candle |
 		// +-----------------------+-----------------------+
 		//
-		unPunchCard = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard"));
-		unPunchCard.setRegistryName("punchcard");
-		ForgeRegistries.ITEMS.register(unPunchCard);
+		punchCard = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard"));
+		punchCard.setRegistryName("punchcard");
+		ForgeRegistries.ITEMS.register(punchCard);
 		
 //		punchCardUnified = (PunchCard) (new PunchCard());
 //		punchCardUnified.setRegistryName("punchcard_u");
 //		ForgeRegistries.ITEMS.register(punchCardUnified);
 		
-		punchCardPunched = (PunchCardPunched) (new PunchCardPunched().setUnlocalizedName("sburbmod_punchcard_punched"));
-		punchCardPunched.setRegistryName("punchcard_punched");
-		ForgeRegistries.ITEMS.register(punchCardPunched);
+//		punchCardPunched = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard_punched"));
+//		punchCardPunched.setRegistryName("punchcard_punched");
+//		ForgeRegistries.ITEMS.register(punchCardPunched);
 		
 	}
 

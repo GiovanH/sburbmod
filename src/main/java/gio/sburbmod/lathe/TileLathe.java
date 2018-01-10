@@ -1,5 +1,6 @@
 package gio.sburbmod.lathe;
 
+import gio.sburbmod.cruxite.DowelCarved;
 import gio.sburbmod.pgo.BlockGeneric;
 import gio.sburbmod.pgo.PgoHelper;
 
@@ -116,7 +117,7 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 		// //punchedStack.setTagCompound(nbtTagCompound);
 		// punchedStack.setStackDisplayName("§r" + new
 		// TextComponentTranslation("item.sburbmod_punchcard_punched.name").getFormattedText());
-
+		DowelCarved.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
 
@@ -148,7 +149,7 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 			} else {
 				boolean totemIsBlank = fuel.getItem() instanceof gio.sburbmod.cruxite.DowelPlain
 						&& fuel.getItem().getRegistryName().toString().equals("sburbmod:dowel_empty");
-				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCardPunched
+				boolean cardIsWritten = input.getItem() instanceof gio.sburbmod.punchcard.PunchCard
 						&& input.getTagCompound().hasKey("Item");
 				if (!fuel.isEmpty() && totemIsBlank && !input.isEmpty()) {
 					if (cardIsWritten) {

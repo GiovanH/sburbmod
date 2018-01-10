@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "blocks/anvil_base",
+        "up": "sburbmod:blocks/spirograph_grey",
+        "east": "sburbmod:blocks/generic",
+        "west": "sburbmod:blocks/generic",
+        "north": "sburbmod:blocks/generic",
+        "south": "sburbmod:blocks/generic",
+        "particle": "sburbmod:blocks/spirograph_grey"
+    }
+}

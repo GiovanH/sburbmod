@@ -9,7 +9,7 @@ import gio.sburbmod.alchemy.Algorithms;
 
 public class CardColor implements IItemColor {
 	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+	public int getColorFromItemstack(ItemStack stack, int layerIndex) {
 		{
 			// int metadata = stack.getMetadata();
 			// int contentsBits = metadata & 0x03;
@@ -18,27 +18,21 @@ public class CardColor implements IItemColor {
 			// return contents.getRenderColour().getRGB();
 			//
 			// return Color.BLACK.getRGB();
-			switch (tintIndex) {
-			case 0:
-				return Color.WHITE.getRGB();
-			case 1: {
-				NBTTagCompound nbtTagCompound = stack.getTagCompound();
-				if (nbtTagCompound == null || !nbtTagCompound.hasKey("Item"))
-					return Color.CYAN.getRGB();
-
-				String code = nbtTagCompound.getTag("Item").toString();
-				long hash = Algorithms.hashString(code, 10000);
-				float hue = (float)hash/100; //Todo; make this readable
-				//System.out.println(String.valueOf(hue));
-				return Color.HSBtoRGB(hue, 1, 1);
+			switch (layerIndex) {
+				case 0: {
+					NBTTagCompound nbtTagCompound = stack.getTagCompound();
+					if (nbtTagCompound == null || !nbtTagCompound.hasKey("Item"))
+						return Color.WHITE.getRGB();
+	
+					String code = nbtTagCompound.getTag("Item").toString();
+					long hash = Algorithms.hashString(code, 10000);
+					float hue = (float) hash / 100; // Todo; make this readable
+					return Color.HSBtoRGB(hue, 1, 1);
+				}
+				default: {
+					return Color.WHITE.getRGB();
+				}
 			}
-			default: {
-				// oops! should never get here.
-				return Color.BLACK.getRGB();
-			}
-			}
-
-			//
 		}
 	}
 }

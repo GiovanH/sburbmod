@@ -29,6 +29,7 @@ public abstract class CommonProxy {
 	  gio.sburbmod.puncher.StartupCommon.preInitCommon();
 	  gio.sburbmod.lathe.StartupCommon.preInitCommon();
 	  gio.sburbmod.alchemiter.StartupCommon.preInitCommon();
+	  gio.sburbmod.alchtable.StartupCommon.preInitCommon();
   }
 
   /**
@@ -50,6 +51,7 @@ public abstract class CommonProxy {
 	  gio.sburbmod.puncher.StartupCommon.initCommon();
 	  gio.sburbmod.lathe.StartupCommon.initCommon();
 	  gio.sburbmod.alchemiter.StartupCommon.initCommon();
+	  gio.sburbmod.alchtable.StartupCommon.initCommon();
 	  
   }
 
@@ -72,6 +74,7 @@ public abstract class CommonProxy {
 	  gio.sburbmod.puncher.StartupCommon.postInitCommon();
 	  gio.sburbmod.lathe.StartupCommon.postInitCommon();
 	  gio.sburbmod.alchemiter.StartupCommon.postInitCommon();
+	  gio.sburbmod.alchtable.StartupCommon.postInitCommon();
 	  
   }
 

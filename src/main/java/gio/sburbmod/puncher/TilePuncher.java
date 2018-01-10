@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
+import gio.sburbmod.punchcard.PunchCard;
 //import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,14 +21,11 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 //import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import gio.sburbmod.punchcard.PunchCard;
 
 /**
  * User: brandon3055 Date: 06/01/2015
@@ -76,8 +74,8 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 	}
 
 	private void extrude(ItemStack input) {
-		Item cruxItem = gio.sburbmod.punchcard.StartupCommon.punchCardPunched;
-		//Item cruxItem = new PunchCard();
+		Item cruxItem = gio.sburbmod.punchcard.StartupCommon.punchCard;
+		// Item cruxItem = new PunchCard();
 		// System.out.println(cruxItem.toString());
 
 		ItemStack punchedStack = new ItemStack(cruxItem, 1);
@@ -89,15 +87,13 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 			punchedStack.setTagCompound(nbtTagCompound);
 		}
 
-		//DONE: Migrate from code key to item nbt
-		//nbtTagCompound.setString("Code", input.getItem().getRegistryName().toString());
-
 		NBTTagCompound inputItemItemTag = new NBTTagCompound();
 		if (input != null)
 			input.setCount(1);
-			input.writeToNBT(inputItemItemTag);
+		input.writeToNBT(inputItemItemTag);
 		nbtTagCompound.setTag("Item", inputItemItemTag);
 		
+		PunchCard.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
 	}
 
@@ -126,7 +122,8 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 					needsUpdate = true;
 				}
 			} else {
-				boolean cardIsBlank = fuel.getItem() instanceof gio.sburbmod.punchcard.PunchCard && fuel.getItem().getRegistryName().toString().equals("sburbmod:punchcard");
+				boolean cardIsBlank = fuel.getItem() instanceof gio.sburbmod.punchcard.PunchCard
+						&& fuel.getItem().getRegistryName().toString().equals("sburbmod:punchcard");
 				if (!fuel.isEmpty() && cardIsBlank && !input.isEmpty()) {
 					fuel.shrink(1);
 					punchingItem = input.copy();
