@@ -1,6 +1,7 @@
 package gio.sburbmod.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
 
 /**
  * CommonProxy is used to set up the mod and start it running.  It contains all the code that should run on both the
@@ -39,6 +40,9 @@ public abstract class CommonProxy {
   public void init()
   {
 	  gio.sburbmod.pgo.StartupCommon.initCommon();
+	  
+	  gio.sburbmod.playerdata.StartupCommon.init();
+	  MinecraftForge.EVENT_BUS.register(new gio.sburbmod.playerdata.Handler());
 	  
 	  gio.sburbmod.creativetabs.StartupCommon.initCommon();
 	  

@@ -1,7 +1,12 @@
 package gio.sburbmod.punchcard;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 //import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * User: The Grey Ghost Date: 24/12/2014
@@ -13,10 +18,21 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  */
 public class StartupCommon {
 	public static PunchCard punchCard; // this holds the unique instance of your block
-//	public static PunchCard punchCardPunched = punchCard; // this holds the unique instance of your block
-	//public static PunchCard punchCardUnified;
+	// public static PunchCard punchCardPunched = punchCard; // this holds the
+	// unique instance of your block
+	// public static PunchCard punchCardUnified;
+	public static CreativeTabs cardTab;
 
 	public static void preInitCommon() {
+
+		cardTab = new CreativeTabs("punchcard_creative_tab") {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public ItemStack getTabIconItem() {
+				return new ItemStack(punchCard);
+			}
+		};
+
 		// each instance of your item should have two names:
 		// 1) a registry name that is used to uniquely identify this item. Should be
 		// unique within your mod. use lower case.
@@ -35,15 +51,19 @@ public class StartupCommon {
 		punchCard = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard"));
 		punchCard.setRegistryName("punchcard");
 		ForgeRegistries.ITEMS.register(punchCard);
+
+
+		punchCard.setCreativeTab(cardTab);
 		
-//		punchCardUnified = (PunchCard) (new PunchCard());
-//		punchCardUnified.setRegistryName("punchcard_u");
-//		ForgeRegistries.ITEMS.register(punchCardUnified);
-		
-//		punchCardPunched = (PunchCard) (new PunchCard().setUnlocalizedName("sburbmod_punchcard_punched"));
-//		punchCardPunched.setRegistryName("punchcard_punched");
-//		ForgeRegistries.ITEMS.register(punchCardPunched);
-		
+		// punchCardUnified = (PunchCard) (new PunchCard());
+		// punchCardUnified.setRegistryName("punchcard_u");
+		// ForgeRegistries.ITEMS.register(punchCardUnified);
+
+		// punchCardPunched = (PunchCard) (new
+		// PunchCard().setUnlocalizedName("sburbmod_punchcard_punched"));
+		// punchCardPunched.setRegistryName("punchcard_punched");
+		// ForgeRegistries.ITEMS.register(punchCardPunched);
+
 	}
 
 	public static void initCommon() {

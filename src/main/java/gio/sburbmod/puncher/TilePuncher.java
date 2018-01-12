@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
+import gio.sburbmod.playerdata.DataProvider;
+import gio.sburbmod.playerdata.IPlayerData;
 import gio.sburbmod.punchcard.PunchCard;
 //import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -56,12 +58,19 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 	private static final short COOK_TIME_FOR_COMPLETION = 100; // vanilla value is 200 = 10 seconds
 
 	private ItemStack[] itemStacks;
+	private EntityPlayer player;
 
 	public TilePuncher() {
 		itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 		clear();
 	}
 
+	public void learnItem(ItemStack learnedItem) {
+		if (this.player == null) return;
+		IPlayerData playerData = this.player.getCapability(DataProvider.CAP, null);
+		playerData.learnItemCode(learnedItem);
+	}
+	
 	/**
 	 * Returns the amount of cook time completed on the currently cooking item.
 	 * 
@@ -95,6 +104,7 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 		
 		PunchCard.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
+		learnItem(input);
 	}
 
 	private boolean needsUpdate = false;
@@ -478,6 +488,7 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 
 	@Override
 	public void openInventory(EntityPlayer player) {
+		this.player = player;
 	}
 
 	@Override

@@ -24,6 +24,9 @@ import net.minecraft.world.EnumSkyBlock;
 
 import javax.annotation.Nullable;
 
+import gio.sburbmod.playerdata.DataProvider;
+import gio.sburbmod.playerdata.IPlayerData;
+
 //import gio.sburbmod.cruxite.DowelPlain;
 
 import java.util.Arrays;
@@ -55,6 +58,12 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		clear();
 	}
 
+	public void learnItem() {
+		if (this.player == null) return;
+		IPlayerData playerData = this.player.getCapability(DataProvider.CAP, null);
+		playerData.learnItemCode(itemStacks[FIRST_OUTPUT_SLOT]);
+	}
+
 	/**
 	 * Returns the amount of cook time completed on the currently cooking item.
 	 * 
@@ -71,6 +80,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Item")) {
 			ItemStack transcribed = new ItemStack(input.getTagCompound().getCompoundTag("Item"));
 			setInventorySlotContents(FIRST_OUTPUT_SLOT, transcribed);
+			learnItem();
 		} else {
 			// error
 		}
@@ -78,6 +88,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 
 	private boolean needsUpdate = false;
 	private ItemStack inputItem;
+	private EntityPlayer player;
 
 	@Override
 	public void update() {
@@ -85,10 +96,11 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		ItemStack input = itemStacks[FIRST_INPUT_SLOT];
 
 		if (output.isEmpty()) {
-			//If the input is empty, there's no cached item, or the input item has changed...
+			// If the input is empty, there's no cached item, or the input item has
+			// changed...
 			if (input.isEmpty() || inputItem == null || inputItem.getItem() != input.getItem())
-				cookTime = 0; //...restart the timer and stop it.
-			//If the timer is stopped, and the input item is a dowel, tick.
+				cookTime = 0; // ...restart the timer and stop it.
+			// If the timer is stopped, and the input item is a dowel, tick.
 			if (cookTime == 0 && input.getItem() instanceof gio.sburbmod.cruxite.DowelCarved) {
 				inputItem = input;
 				cookTime++;
@@ -270,7 +282,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		// Save everything else
 		parentNBTTagCompound.setShort("CookTime", cookTime);
 
-		//Write the cached input item to a special tag
+		// Write the cached input item to a special tag
 		NBTTagCompound inputItemItemTag = new NBTTagCompound();
 		if (inputItem != null)
 			inputItem.writeToNBT(inputItemItemTag);
@@ -298,10 +310,9 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		// Load everything else. Trim the arrays (or pad with 0) to make sure they have
 		// the correct number of elements
 		cookTime = nbtTagCompound.getShort("CookTime");
-		//Read the cached input item
+		// Read the cached input item
 		inputItem = new ItemStack(nbtTagCompound.getCompoundTag("ItemUsed"));
 	}
-
 
 	// will add a key for this container to the lang file so we can name it in the
 	// GUI
@@ -309,9 +320,9 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 	public String getName() {
 		return "container.sburbmod_alchemiter.name";
 	}
-	
+
 	// ===========================Everything else here is boring! lame.
-	
+
 	// // When the world loads from disk, the server needs to send the TileEntity
 	// information to the client
 	// // it uses getUpdatePacket(), getUpdateTag(), onDataPacket(), and
@@ -358,7 +369,6 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 	public void clear() {
 		Arrays.fill(itemStacks, ItemStack.EMPTY); // EMPTY_ITEM
 	}
-
 
 	@Override
 	public boolean hasCustomName() {
@@ -440,6 +450,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 
 	@Override
 	public void openInventory(EntityPlayer player) {
+		this.player = player;
 	}
 
 	@Override

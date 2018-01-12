@@ -1,6 +1,7 @@
 package gio.sburbmod.puncher;
 
 import gio.sburbmod.SburbMod;
+import gio.sburbmod.alchemiter.TileAlchemiter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -54,6 +55,7 @@ public class BlockPuncher extends BlockContainer {
 			return true;
 
 		playerIn.openGui(SburbMod.instance, GuiHandlerPuncher.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+		((TilePuncher)worldIn.getTileEntity(pos)).openInventory(playerIn);
 		return true;
 	}
 

@@ -15,6 +15,7 @@ import net.minecraft.client.util.ITooltipFlag;
 //import java.util.UUID;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 //import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -41,6 +42,8 @@ public class DowelCarved extends DowelPlain {
 		return VARIANTS;
 	}
 
+	private EntityPlayer player;
+
 	public DowelCarved() {
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
@@ -65,20 +68,40 @@ public class DowelCarved extends DowelPlain {
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
 	}
 
+	
+	@Override
+    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    {
+		if (entityIn instanceof EntityPlayer && !entityIn.world.isRemote) this.player = (EntityPlayer)entityIn;
+    }
+
+
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		SburbItemTooltip.addInformation(stack, worldIn, tooltip, flagIn);
+		SburbItemTooltip.addInformation(stack, worldIn, tooltip, flagIn, this.player);
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (int i = 1; i <= VARIANTS; i++) {
-				if (SUBITEM_DEBUG)
-					System.out.println("sburbmod:dowel_carved_" + i + "/" + i);
-				items.add(new ItemStack(this, 1, i));
+			//items.add(new ItemStack(this, 1, 1));
+			if (tab.equals(StartupCommon.cruxiteTab)) {
+
+				for (Item i : Item.REGISTRY) {
+					ItemStack s = new ItemStack(this, 1);
+					ItemStack is = new ItemStack(i, 1);
+					NBTTagCompound nbtTagCompound = new NBTTagCompound();
+					s.setTagCompound(nbtTagCompound);
+
+					NBTTagCompound inputItemItemTag = new NBTTagCompound();
+					is.writeToNBT(inputItemItemTag);
+					nbtTagCompound.setTag("Item", inputItemItemTag);
+
+					setMetadata(s);
+
+					items.add(s);
+				}
 			}
 		}
 	}

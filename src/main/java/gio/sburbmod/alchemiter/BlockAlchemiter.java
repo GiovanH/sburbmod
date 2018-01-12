@@ -65,6 +65,7 @@ public class BlockAlchemiter extends BlockContainer {
 			return true;
 
 		playerIn.openGui(SburbMod.instance, GuiHandlerAlchemiter.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+		((TileAlchemiter)worldIn.getTileEntity(pos)).openInventory(playerIn);
 		return true;
 	}
 

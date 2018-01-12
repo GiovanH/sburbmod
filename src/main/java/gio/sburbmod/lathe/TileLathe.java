@@ -1,6 +1,7 @@
 package gio.sburbmod.lathe;
 
 import gio.sburbmod.cruxite.DowelCarved;
+import gio.sburbmod.cruxite.DowelColor;
 import gio.sburbmod.pgo.BlockGeneric;
 import gio.sburbmod.pgo.PgoHelper;
 
@@ -90,7 +91,8 @@ public class TileLathe extends TileEntity implements IInventory, ITickable {
 			punchedStack.setTagCompound(nbtTagCompound);
 		}
 
-		if (fuel.getTagCompound().hasKey("Color")) {
+		
+		if (fuel.getTagCompound() != null && fuel.getTagCompound().hasKey("Color")) {
 			nbtTagCompound.setInteger("Color", fuel.getTagCompound().getInteger("Color"));
 		} else {
 			System.err.println("Trying to carve a dowel, but the totem doesn't have a color? :?");

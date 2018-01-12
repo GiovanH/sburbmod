@@ -11,6 +11,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import gio.sburbmod.alchemy.Alchemy;
+import gio.sburbmod.pgo.PgoHelper;
+import gio.sburbmod.playerdata.*;
 import gio.sburbmod.punchcard.PunchCard;
 import net.minecraft.block.Block;
 //import net.minecraft.block.material.Material;
@@ -62,6 +64,7 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 	/** The number of ticks required to cook an item */
 	private static final short COOK_TIME_FOR_COMPLETION = 100; // vanilla value is 200 = 10 seconds
 
+
 	private ItemStack[] itemStacks;
 
 	public TileTable() {
@@ -81,7 +84,7 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 	}
 
 	private boolean needsUpdate = false;
-	
+
 	// This method is called every tick to update the tile entity, i.e.
 	// - see if the fuel has run out, and if so turn the furnace "off" and slowly
 	// uncook the current item (if any)
@@ -89,63 +92,12 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 	// It runs both on the server and the client.
 	@Override
 	public void update() {
-		if (needsUpdate) {
-			ItemStack output = itemStacks[FIRST_OUTPUT_SLOT];
-			ItemStack input1 = itemStacks[FIRST_INPUT_SLOT];
-			ItemStack input2 = itemStacks[FIRST_INPUT_SLOT + 1];
 
-			boolean input1hasitem = input1.getTagCompound() != null && input1.getTagCompound().hasKey("Item");
-			boolean input2hasitem = input2.getTagCompound() != null && input2.getTagCompound().hasKey("Item");
-			if (input1.getItem() instanceof PunchCard && input2.getItem() instanceof PunchCard && input1hasitem
-					&& input2hasitem) {
-				Item item1 = new ItemStack(input1.getTagCompound().getCompoundTag("Item")).getItem();
-				Item item2 = new ItemStack(input2.getTagCompound().getCompoundTag("Item")).getItem();
-				Set<Item> AND = Alchemy.getResultsForAND(item1, item2);
-				Set<Item> OR = Alchemy.getResultsForOR(item1, item2);
-
-//				cookTime = (short) ((cookTime + 1) % 20);
-//				if (cookTime == 0) {
-					List<Item> andlist = new ArrayList<Item>();
-					andlist.addAll(AND);
-					Collections.shuffle(andlist);
-
-					ItemStack newItemStack;
-					try {
-						newItemStack = new ItemStack((Item) andlist.get(0), 1);
-					} catch (java.lang.IndexOutOfBoundsException e) {
-						// TODO Auto-generated catch block
-						return;
-					}
-
-					ItemStack newCard = new ItemStack(gio.sburbmod.punchcard.StartupCommon.punchCard, 1);
-					// System.out.println(cruxiteStack.toString());
-
-					NBTTagCompound nbtTagCompound = newCard.getTagCompound();
-					if (nbtTagCompound == null) {
-						nbtTagCompound = new NBTTagCompound();
-						newCard.setTagCompound(nbtTagCompound);
-					}
-
-					NBTTagCompound inputItemItemTag = new NBTTagCompound();
-					newItemStack.writeToNBT(inputItemItemTag);
-					nbtTagCompound.setTag("Item", inputItemItemTag);
-
-					PunchCard.setMetadata(newCard);
-
-					setInventorySlotContents(FIRST_OUTPUT_SLOT, newCard);
-					System.out.println("SET!");
-//					input1.shrink(1);
-//					input2.shrink(1);
-	//			}
-			}
-
-			markDirty();
-			needsUpdate = false;
-
-			// System.out.println(System.currentTimeMillis() + ": " + cookTime);
-		}
+		markDirty();
+		needsUpdate = false;
 
 	}
+
 	// Gets the number of slots in the inventory
 	@Override
 	public int getSizeInventory() {
@@ -196,9 +148,20 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 				setInventorySlotContents(slotIndex, ItemStack.EMPTY); // EMPTY_ITEM
 			}
 		}
+		if (slotIndex == FIRST_OUTPUT_SLOT) {
+			itemTaken(slotIndex, itemStackInSlot);
+		}
 		markDirty();
-		//needsUpdate = true;
+		// needsUpdate = true;
 		return itemStackRemoved;
+	}
+
+	private void itemTaken(int slotIndex, ItemStack stack) {
+		// System.out.println("item taken");
+		// System.out.println(String.valueOf(slotIndex));
+		// if (stack.getItem() instanceof PunchCard ) {
+		// System.out.println("CHARGING!");
+		// }
 	}
 
 	// overwrites the stack in the given slotIndex with the given stack
@@ -207,6 +170,9 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 		itemStacks[slotIndex] = itemstack;
 		if (!itemstack.isEmpty() && itemstack.getCount() > getInventoryStackLimit()) { // isEmpty(); getStackSize()
 			itemstack.setCount(getInventoryStackLimit()); // setStackSize()
+		}
+		if (slotIndex == FIRST_OUTPUT_SLOT) {
+			itemTaken(slotIndex, itemstack);
 		}
 		markDirty();
 	}
@@ -245,7 +211,7 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 	// Return true if the given stack is allowed to be inserted in the given slot
 	// Unlike the vanilla furnace, we allow anything to be placed in the fuel slots
 	static public boolean isItemValidForInputSlot(ItemStack itemStack) {
-		return true;
+		return (!itemStack.isEmpty() && itemStack.getItem() instanceof PunchCard);
 	}
 
 	// Return true if the given stack is allowed to be inserted in the given slot
@@ -284,7 +250,7 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 		// the array of hashmaps is then inserted into the parent hashmap for the
 		// container
 		parentNBTTagCompound.setTag("Items", dataForAllSlots);
-		
+
 		// Save everything else
 		parentNBTTagCompound.setBoolean("needsUpdate", needsUpdate);
 		return parentNBTTagCompound;
@@ -459,16 +425,58 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 
 	@Override
 	public void openInventory(EntityPlayer player) {
+		 IPlayerData playerData = player.getCapability(DataProvider.CAP, null);
+		 playerData.setInt(playerData.getInt()+1);
+		 System.out.println(playerData.getInt());
 	}
 
 	@Override
 	public void closeInventory(EntityPlayer player) {
 	}
 
-	public void setNeedsUpdate() {
-		this.needsUpdate = true;
-		markDirty();
-		
+	public void doAlchemy(short type) {
+		ItemStack output = itemStacks[FIRST_OUTPUT_SLOT];
+		ItemStack input1 = itemStacks[FIRST_INPUT_SLOT];
+		ItemStack input2 = itemStacks[FIRST_INPUT_SLOT + 1];
+
+		boolean input1hasitem = input1.getTagCompound() != null && input1.getTagCompound().hasKey("Item");
+		boolean input2hasitem = input2.getTagCompound() != null && input2.getTagCompound().hasKey("Item");
+		if (input1.getItem() instanceof PunchCard && input2.getItem() instanceof PunchCard && input1hasitem
+				&& input2hasitem) {
+			Item item1 = new ItemStack(input1.getTagCompound().getCompoundTag("Item")).getItem();
+			Item item2 = new ItemStack(input2.getTagCompound().getCompoundTag("Item")).getItem();
+
+			List<Item> resultsList = new ArrayList<Item>();
+			resultsList.addAll((type == 0 ? Alchemy.getResultsForAND(item1, item2) : Alchemy.getResultsForOR(item1, item2)));
+			Collections.shuffle(resultsList);
+
+			ItemStack newItemStack;
+			try {
+				newItemStack = new ItemStack((Item) resultsList.get(0), 1);
+			} catch (java.lang.IndexOutOfBoundsException e) {
+				newItemStack = PgoHelper.newItemStack();
+			}
+
+			ItemStack newCard = new ItemStack(gio.sburbmod.punchcard.StartupCommon.punchCard, 1);
+			// System.out.println(cruxiteStack.toString());
+
+			NBTTagCompound nbtTagCompound = newCard.getTagCompound();
+			if (nbtTagCompound == null) {
+				nbtTagCompound = new NBTTagCompound();
+				newCard.setTagCompound(nbtTagCompound);
+			}
+
+			NBTTagCompound inputItemItemTag = new NBTTagCompound();
+			newItemStack.writeToNBT(inputItemItemTag);
+			nbtTagCompound.setTag("Item", inputItemItemTag);
+
+			PunchCard.setMetadata(newCard);
+
+			setInventorySlotContents(FIRST_OUTPUT_SLOT, newCard);
+			// input1.shrink(1);
+			// input2.shrink(1);
+			markDirty();
+		}
 	}
 
 }

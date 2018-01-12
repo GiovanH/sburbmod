@@ -48,10 +48,6 @@ public class SburbMod {
       proxy.postInit();
       Recipes.getInstance(); //Init alchemy recipe reg
       
-      //test some alchemy:
-      Alchemy.getResultsForAND(Items.GLOWSTONE_DUST, Items.REDSTONE);
-      Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.GLOWSTONE_DUST);
-      Alchemy.getResultsForOR(Item.getByNameOrId("minecraft:redstone_lamp"), Items.REDSTONE);
     }
 	
     public static String prependModID(String name) {return modId + ":" + name;}

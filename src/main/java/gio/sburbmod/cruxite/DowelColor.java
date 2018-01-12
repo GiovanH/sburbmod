@@ -18,7 +18,8 @@ public class DowelColor implements IItemColor {
 			//
 			//return Color.BLACK.getRGB();
 			NBTTagCompound nbtTagCompound = stack.getTagCompound();
-		    if (nbtTagCompound == null || !nbtTagCompound.hasKey("Color")) return Color.CYAN.getRGB();
+		    if (nbtTagCompound == null) nbtTagCompound = new NBTTagCompound();
+		    if (!nbtTagCompound.hasKey("Color")) nbtTagCompound.setInteger("Color", Color.CYAN.getRGB()); 
 		    
 		    return nbtTagCompound.getInteger("Color");
 			

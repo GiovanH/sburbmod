@@ -24,9 +24,10 @@ public class GuiInventoryTable extends GuiContainer {
 	// This is the resource location for the background image
 	private static final ResourceLocation texture = new ResourceLocation("sburbmod", "textures/gui/alchtable_bg.png");
 	private static final int ABUTTON = 0;
+	private static final int NBUTTON = 1;
 	private TileTable tileEntity;
 
-	GuiButton aButton;
+	GuiButton aButton, nButton;
 
 	public GuiInventoryTable(InventoryPlayer invPlayer, TileTable tilePuncher) {
 		super(new ContainerTable(invPlayer, tilePuncher));
@@ -81,17 +82,16 @@ public class GuiInventoryTable extends GuiContainer {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		buttonList.add(aButton = new GuiButton(ABUTTON, this.guiLeft + 36, 34 + this.guiTop, 18, 18, "&&"));
+		buttonList.add(aButton = new GuiButton(ABUTTON, this.guiLeft + 17, 53 + this.guiTop, 18, 18, "&&"));
+		buttonList.add(nButton = new GuiButton(NBUTTON, this.guiLeft + 55, 53 + this.guiTop, 18, 18, "||"));
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
-		switch (button.id) {
-		case ABUTTON:
-//TODO: do packet things
-			break;
-		}
-		super.actionPerformed(button);
+			PacketMessageToServer airstrikeMessageToServer = new PacketMessageToServer(this.tileEntity.getPos().toLong(), (short) button.id);
+			StartupCommon.simpleNetworkWrapper.sendToServer(airstrikeMessageToServer);
+	super.actionPerformed(button);
+
 	}
 
 	@Override

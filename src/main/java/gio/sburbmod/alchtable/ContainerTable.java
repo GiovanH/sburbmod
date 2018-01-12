@@ -89,7 +89,7 @@ public class ContainerTable extends Container {
 			}
 		}
 
-		final int FUEL_SLOTS_XPOS =56;
+		final int FUEL_SLOTS_XPOS = 56;
 		final int FUEL_SLOTS_YPOS = 53;
 		// Add the tile fuel slots
 		for (int y = 0; y < FUEL_SLOTS_COUNT; y++) {
@@ -102,8 +102,7 @@ public class ContainerTable extends Container {
 		// Add the tile input slots
 		for (int x = 0; x < INPUT_SLOTS_COUNT; x++) {
 			int slotNumber = x + FIRST_INPUT_SLOT_NUMBER;
-			addSlotToContainer(
-					new Slot(tilePrinter, slotNumber, INPUT_SLOTS_XPOS + 38 * x, INPUT_SLOTS_YPOS));
+			addSlotToContainer(new CardSlot(tilePrinter, slotNumber, INPUT_SLOTS_XPOS + 38 * x, INPUT_SLOTS_YPOS));
 		}
 
 		final int OUTPUT_SLOTS_XPOS = 116;
@@ -150,17 +149,19 @@ public class ContainerTable extends Container {
 			// This is a vanilla container slot so merge the stack into one of the furnace
 			// slots
 			// If the stack is smeltable try to merge merge the stack into the input slots
-			if (!sourceStack.isEmpty() && sourceStack.getItem() instanceof gio.sburbmod.punchcard.PunchCard) { // isEmptyItem
+			if (TileTable.isItemValidForInputSlot(sourceStack)) { // isEmptyItem
+				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
+						false)) {
+					return ItemStack.EMPTY; // EMPTY_ITEM;
+				}
+			} else if (TileTable.isItemValidForFuelSlot(sourceStack)) {
 				if (!mergeItemStack(sourceStack, FIRST_FUEL_SLOT_INDEX, FIRST_FUEL_SLOT_INDEX + FUEL_SLOTS_COUNT,
 						true)) {
 					// Setting the boolean to true places the stack in the bottom slot first
 					return ItemStack.EMPTY; // EMPTY_ITEM;
 				}
 			} else {
-				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT,
-						false)) {
-					return ItemStack.EMPTY; // EMPTY_ITEM;
-				}
+				return ItemStack.EMPTY; // EMPTY_ITEM;
 			}
 		} else if (sourceSlotIndex >= FIRST_FUEL_SLOT_INDEX
 				&& sourceSlotIndex < FIRST_FUEL_SLOT_INDEX + FURNACE_SLOTS_COUNT) {
@@ -243,6 +244,20 @@ public class ContainerTable extends Container {
 	@Override
 	public void updateProgressBar(int id, int data) {
 		tilePrinter.setField(id, data);
+	}
+
+	// SlotOutput is a slot that will not accept any items
+	public class CardSlot extends Slot {
+		public CardSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+			super(inventoryIn, index, xPosition, yPosition);
+		}
+
+		// if this function returns false, the player won't be able to insert the given
+		// item into this slot
+		@Override
+		public boolean isItemValid(ItemStack stack) {
+			return TileTable.isItemValidForInputSlot(stack);
+		}
 	}
 
 	// SlotOutput is a slot that will not accept any items

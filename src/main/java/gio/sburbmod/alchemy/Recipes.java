@@ -26,7 +26,7 @@ public class Recipes {
 	private static final Map<Item, Set<Item>> INGREDIENTS_BY_PRODUCT = new HashMap<Item, Set<Item>>();
 	// Stick: [torch, pickaxe...]
 	private static final Map<Item, Set<Item>> PRODUCTS_BY_INGREDIENT = new HashMap<Item, Set<Item>>();
-	
+
 	private static final Set<Item> INGREDIENTS_ALL = new HashSet<Item>();
 	public static final Set<Item> FUNDAMENTAL_ELEMENTS = new HashSet<Item>();
 	private static final boolean DEBUG_RECIPE_CONSTRUCTION = false;
@@ -59,7 +59,8 @@ public class Recipes {
 	 * Finds the items that can be crafted by using key as an ingredient.
 	 * 
 	 * @param key
-	 * @return A set containing all items requiring key as an ingredient. May be empty.
+	 * @return A set containing all items requiring key as an ingredient. May be
+	 *         empty.
 	 */
 	public static Set<Item> getUsesForIngredient(Item key) {
 		Set<Item> components = PRODUCTS_BY_INGREDIENT.get(key);
@@ -84,49 +85,58 @@ public class Recipes {
 			INGREDIENTS_BY_PRODUCT.put(irecipe.getRecipeOutput().getItem(), componentsOfItem);
 		}
 		// Make the other registry too
-		for (Item i : Item.REGISTRY) {										//For every item
-			Set<Item> uses = new HashSet<Item>();							//Make a list for its uses
-			for (Item product : INGREDIENTS_BY_PRODUCT.keySet()) {			//For every product
-				Set<Item> ingredients = INGREDIENTS_BY_PRODUCT.get(product);	//Get that product's ingredients
-				if (ingredients.contains(i))								//If our first item is one of its ingredients
-					uses.add(product);										//add this product to its list of uses.
-												
+		for (Item i : Item.REGISTRY) { // For every item
+			Set<Item> uses = new HashSet<Item>(); // Make a list for its uses
+			for (Item product : INGREDIENTS_BY_PRODUCT.keySet()) { // For every product
+				Set<Item> ingredients = INGREDIENTS_BY_PRODUCT.get(product); // Get that product's ingredients
+				if (ingredients.contains(i)) // If our first item is one of its ingredients
+					uses.add(product); // add this product to its list of uses.
+
 			}
-			if (!uses.isEmpty()) PRODUCTS_BY_INGREDIENT.put(i, uses);			//If our item has any uses, remember them.
+			if (!uses.isEmpty())
+				PRODUCTS_BY_INGREDIENT.put(i, uses); // If our item has any uses, remember them.
 		}
-		
-		//Substitutions
+
+		// Substitutions
 		for (Item product : INGREDIENTS_BY_PRODUCT.keySet()) {
-			Set<Item> ingredients = getIngredientsOfItem(product);	//Get that product's ingredients
+			Set<Item> ingredients = getIngredientsOfItem(product); // Get that product's ingredients
 			if (ingredients.size() == 1) {
-				if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("\nSingle-ingredient product: " + product.getUnlocalizedName());
+				if (DEBUG_RECIPE_CONSTRUCTION)
+					System.out.println("\nSingle-ingredient product: " + product.getUnlocalizedName());
 				for (Item theIngredient : ingredients) {
-					if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Ingredient: " + theIngredient.getUnlocalizedName());
-					
+					if (DEBUG_RECIPE_CONSTRUCTION)
+						System.out.println("Ingredient: " + theIngredient.getUnlocalizedName());
+
 					Set<Item> itsUses = getUsesForIngredient(theIngredient);
-					if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Ingredient uses: " + Util.prettifyItemSet(itsUses));
+					if (DEBUG_RECIPE_CONSTRUCTION)
+						System.out.println("Ingredient uses: " + Util.prettifyItemSet(itsUses));
 					Set<Item> combinedUses = getUsesForIngredient(product);
-					if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Product uses: " + Util.prettifyItemSet(combinedUses));
+					if (DEBUG_RECIPE_CONSTRUCTION)
+						System.out.println("Product uses: " + Util.prettifyItemSet(combinedUses));
 					combinedUses.addAll(itsUses);
-					if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Combined uses: " + Util.prettifyItemSet(combinedUses));
+					if (DEBUG_RECIPE_CONSTRUCTION)
+						System.out.println("Combined uses: " + Util.prettifyItemSet(combinedUses));
 					PRODUCTS_BY_INGREDIENT.put(product, combinedUses);
 					PRODUCTS_BY_INGREDIENT.put(theIngredient, combinedUses);
-					//add all of that ingredient's uses
-					//to the product's uses.
+					// add all of that ingredient's uses
+					// to the product's uses.
 				}
 			}
 		}
 
 		// What ingredients can't be crafted?
-		if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Fundamental elements:");
+		if (DEBUG_RECIPE_CONSTRUCTION)
+			System.out.println("Fundamental elements:");
 		for (Item i : Item.REGISTRY) {
 			if (!INGREDIENTS_BY_PRODUCT.containsKey(i)) {
 				FUNDAMENTAL_ELEMENTS.add(i);
-				if (DEBUG_RECIPE_CONSTRUCTION) System.out.println(i.getUnlocalizedName());
+				if (DEBUG_RECIPE_CONSTRUCTION)
+					System.out.println(i.getUnlocalizedName());
 			}
 		}
 
-		if (DEBUG_RECIPE_CONSTRUCTION) System.out.println("Done.");
+		if (DEBUG_RECIPE_CONSTRUCTION)
+			System.out.println("Done.");
 	}
 
 }

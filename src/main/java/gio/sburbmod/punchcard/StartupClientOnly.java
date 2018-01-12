@@ -14,6 +14,8 @@ import net.minecraftforge.client.model.ModelLoader;
  * information
  */
 public class StartupClientOnly {
+	static final boolean DEBUG_SUBTYPES = false;
+	
 	public static void preInitClientOnly() {
 		// MinecraftForge.EVENT_BUS.register(ModelBakeEventHandler.instance);
 		// required in order for the renderer to know how to render your item.
@@ -25,7 +27,7 @@ public class StartupClientOnly {
 				new ModelResourceLocation("sburbmod:unpunched_card", "inventory"));
 		for (int i = 1; i <= VARIANTS; i++) {
 			int subtype = DEFAULT_ITEM_SUBTYPE + i;
-					System.out.println(PUNCHED_BASE_RESOURCE + i + "/" + subtype);
+			if (DEBUG_SUBTYPES) System.out.println(PUNCHED_BASE_RESOURCE + i + "/" + subtype);
 			ModelLoader.setCustomModelResourceLocation(StartupCommon.punchCard, subtype,
 					new ModelResourceLocation(PUNCHED_BASE_RESOURCE + i, "inventory"));
 		}
