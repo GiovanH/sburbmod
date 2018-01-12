@@ -58,12 +58,6 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		clear();
 	}
 
-	public void learnItem() {
-		if (this.player == null) return;
-		IPlayerData playerData = this.player.getCapability(DataProvider.CAP, null);
-		playerData.learnItemCode(itemStacks[FIRST_OUTPUT_SLOT]);
-	}
-
 	/**
 	 * Returns the amount of cook time completed on the currently cooking item.
 	 * 
@@ -80,7 +74,9 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 		if (input.getTagCompound() != null && input.getTagCompound().hasKey("Item")) {
 			ItemStack transcribed = new ItemStack(input.getTagCompound().getCompoundTag("Item"));
 			setInventorySlotContents(FIRST_OUTPUT_SLOT, transcribed);
-			learnItem();
+
+			if (this.player != null) this.player.getCapability(DataProvider.CAP, null).learnItemCode(itemStacks[FIRST_OUTPUT_SLOT]);
+			
 		} else {
 			// error
 		}

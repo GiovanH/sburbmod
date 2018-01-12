@@ -452,6 +452,7 @@ public class TileTable extends TileEntity implements IInventory, ITickable {
 
 			ItemStack newItemStack;
 			try {
+				if (resultsList.size() == 0) return;
 				newItemStack = new ItemStack((Item) resultsList.get(0), 1);
 			} catch (java.lang.IndexOutOfBoundsException e) {
 				newItemStack = PgoHelper.newItemStack();

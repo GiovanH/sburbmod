@@ -43,7 +43,8 @@ public class SburbItemTooltip {
 				if (DEBUG_PLAYER && player != null) System.out.println(player.toString());
 				if (player != null) knowledge = player.getCapability(DataProvider.CAP, null).knowsItemCode(item);
 				//if (knowledge) {
-					tooltip.add((knowledge ? FmtCodes.CGREYDARK : FmtCodes.CGREYDARK + FmtCodes.SPMAGIC ) + item.getDisplayName() + "");
+					//tooltip.add((knowledge ? FmtCodes.CGREYDARK : FmtCodes.CGREYDARK + FmtCodes.SPMAGIC ) + item.getDisplayName() + "");
+					tooltip.add((knowledge ? FmtCodes.CWHITE : FmtCodes.CGREYDARK ) + item.getDisplayName() + "");
 				//}
 				
 			}
