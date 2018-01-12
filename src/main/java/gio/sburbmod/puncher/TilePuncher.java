@@ -65,10 +65,10 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 		clear();
 	}
 
-	public void learnItem(ItemStack learnedItem) {
+	public void learnItem() {
 		if (this.player == null) return;
 		IPlayerData playerData = this.player.getCapability(DataProvider.CAP, null);
-		playerData.learnItemCode(learnedItem);
+		playerData.learnItemCode(itemStacks[FIRST_OUTPUT_SLOT]);
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 		
 		PunchCard.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
-		learnItem(input);
+		learnItem();
 	}
 
 	private boolean needsUpdate = false;
