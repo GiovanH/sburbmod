@@ -65,12 +65,6 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 		clear();
 	}
 
-	public void learnItem() {
-		if (this.player == null) return;
-		IPlayerData playerData = this.player.getCapability(DataProvider.CAP, null);
-		playerData.learnItemCode(itemStacks[FIRST_OUTPUT_SLOT]);
-	}
-	
 	/**
 	 * Returns the amount of cook time completed on the currently cooking item.
 	 * 
@@ -101,10 +95,13 @@ public class TilePuncher extends TileEntity implements IInventory, ITickable {
 			input.setCount(1);
 		input.writeToNBT(inputItemItemTag);
 		nbtTagCompound.setTag("Item", inputItemItemTag);
-		
+
 		PunchCard.setMetadata(punchedStack);
 		setInventorySlotContents(FIRST_OUTPUT_SLOT, punchedStack);
-		learnItem();
+
+		if (this.player != null)
+			this.player.getCapability(DataProvider.CAP, null).learnItemCode(input);
+
 	}
 
 	private boolean needsUpdate = false;
