@@ -13,6 +13,19 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class Grist {
+		
+	public static enum GristType{
+		BUILD(0), SHALE(1);
+		
+		private final int id;
+	    private GristType(int value) {
+	        this.id = value;
+	    }
+	    public int getId() {
+	        return id;
+	    }
+	}
+	
 
 	int count = 0;
 	

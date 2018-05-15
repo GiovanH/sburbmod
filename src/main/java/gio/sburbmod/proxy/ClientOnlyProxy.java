@@ -1,9 +1,13 @@
 package gio.sburbmod.proxy;
 
+import gio.sburbmod.grist.EntityGristPickup;
+import gio.sburbmod.grist.GristRenderFactory;
+import gio.sburbmod.grist.RenderGristPickup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 /**
  * ClientProxy is used to set up the mod and start it running on normal
@@ -32,6 +36,8 @@ public class ClientOnlyProxy extends CommonProxy {
 		gio.sburbmod.lathe.StartupClientOnly.preInitClientOnly();
 		gio.sburbmod.alchemiter.StartupClientOnly.preInitClientOnly();
 		gio.sburbmod.alchtable.StartupClientOnly.preInitClientOnly();
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityGristPickup.class, new GristRenderFactory());
 	}
 
 	/**

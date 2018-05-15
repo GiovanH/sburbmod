@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = SburbMod.modId, name = SburbMod.name, version = SburbMod.version)
 public class SburbMod {
@@ -49,6 +50,13 @@ public class SburbMod {
       Recipes.getInstance(); //Init alchemy recipe reg
       
     }
+    
+    @EventHandler
+    public void serverLoad(FMLServerStartingEvent event)
+    {
+  	  proxy.serverLoad(event);
+    }
+    
 	
     public static String prependModID(String name) {return modId + ":" + name;}
 }

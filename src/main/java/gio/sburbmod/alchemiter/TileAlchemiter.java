@@ -84,7 +84,7 @@ public class TileAlchemiter extends TileEntity implements IInventory, ITickable 
 
 	private boolean needsUpdate = false;
 	private ItemStack inputItem;
-	private EntityPlayer player;
+	EntityPlayer player;
 
 	@Override
 	public void update() {

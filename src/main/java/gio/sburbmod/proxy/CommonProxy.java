@@ -1,7 +1,12 @@
 package gio.sburbmod.proxy;
 
+import gio.sburbmod.grist.EntityGristPickup;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
 
 /**
  * CommonProxy is used to set up the mod and start it running.  It contains all the code that should run on both the
@@ -57,6 +62,8 @@ public abstract class CommonProxy {
 	  gio.sburbmod.alchemiter.StartupCommon.initCommon();
 	  gio.sburbmod.alchtable.StartupCommon.initCommon();
 	  
+	  ForgeRegistries.ENTITIES.register(new gio.sburbmod.grist.EntityEntryGrist(EntityGristPickup.class, "Grist Pickup").setRegistryName("ENTITY_GRISTPICKUP"));
+	  	  
   }
 
   /**
@@ -80,6 +87,11 @@ public abstract class CommonProxy {
 	  gio.sburbmod.alchemiter.StartupCommon.postInitCommon();
 	  gio.sburbmod.alchtable.StartupCommon.postInitCommon();
 	  
+  }
+  
+  public void serverLoad(FMLServerStartingEvent event) {
+	  event.registerServerCommand(new gio.sburbmod.chat.CommandKnown());
+	  event.registerServerCommand(new gio.sburbmod.chat.CommandGrist());
   }
 
   // helper to determine whether the given player is in creative mode

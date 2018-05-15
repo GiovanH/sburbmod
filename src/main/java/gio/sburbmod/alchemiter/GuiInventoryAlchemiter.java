@@ -3,8 +3,12 @@ package gio.sburbmod.alchemiter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 //import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,6 +16,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import gio.sburbmod.playerdata.DataProvider;
 
 @SideOnly(Side.CLIENT)
 public class GuiInventoryAlchemiter extends GuiContainer {
@@ -52,8 +59,9 @@ public class GuiInventoryAlchemiter extends GuiContainer {
 		int yOffset = (int) ((1 - cookProgress) * COOK_BAR_HEIGHT);
 		drawTexturedModalRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS + yOffset, COOK_BAR_ICON_U,
 				COOK_BAR_ICON_V + yOffset, COOK_BAR_WIDTH, COOK_BAR_HEIGHT - yOffset);
-		drawTexturedModalRect(guiLeft + COOK_BAR_XPOS+COOK_BAR_WIDTH, guiTop + COOK_BAR_YPOS + yOffset, COOK_BAR_ICON_U,
-				COOK_BAR_ICON_V + yOffset+COOK_BAR_HEIGHT, COOK_BAR_WIDTH, COOK_BAR_HEIGHT - yOffset);
+		drawTexturedModalRect(guiLeft + COOK_BAR_XPOS + COOK_BAR_WIDTH, guiTop + COOK_BAR_YPOS + yOffset,
+				COOK_BAR_ICON_U, COOK_BAR_ICON_V + yOffset + COOK_BAR_HEIGHT, COOK_BAR_WIDTH,
+				COOK_BAR_HEIGHT - yOffset);
 
 	}
 
@@ -69,19 +77,32 @@ public class GuiInventoryAlchemiter extends GuiContainer {
 		List<String> hoveringText = new ArrayList<String>();
 
 		// If the mouse is over the progress bar add the progress bar hovering text
-//		if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX,
-//				mouseY)) {
-//			hoveringText.add("Progress:");
-//			int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
-//			hoveringText.add(cookPercentage + "%");
-//		}
-		
+		// if (isInRect(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH,
+		// COOK_BAR_HEIGHT, mouseX,
+		// mouseY)) {
+		// hoveringText.add("Progress:");
+		// int cookPercentage = (int) (tileEntity.fractionOfCookTimeComplete() * 100);
+		// hoveringText.add(cookPercentage + "%");
+		// }
+
+		EntityPlayer player = Minecraft.getMinecraft().player;
+		if (player != null) {
+			Map<Integer, Integer> gristData = player.getCapability(DataProvider.CAP, null)
+					.getGristCollection();
+			for (Integer i : gristData.keySet()) {
+				fontRenderer.drawString("grist.name." + i + ": " + gristData.get(i), LABEL_XPOS, LABEL_YPOS,
+						Color.darkGray.getRGB());
+			}
+		}
+
 		// If hoveringText is not empty draw the hovering text
-		if (!hoveringText.isEmpty()) {
+		if (!hoveringText.isEmpty())
+
+		{
 			drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop, fontRenderer);
 		}
 
-        this.renderHoveredToolTip(mouseX- guiLeft, mouseY- guiTop);
+		this.renderHoveredToolTip(mouseX - guiLeft, mouseY - guiTop);
 	}
 
 	// Returns true if the given x,y coordinates are within the given rectangle

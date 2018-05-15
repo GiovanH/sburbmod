@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import gio.sburbmod.Util;
+import gio.sburbmod.pgo.PgoHelper;
 import net.minecraft.item.Item;
 
 public class Alchemy {
@@ -41,6 +42,9 @@ public class Alchemy {
 				System.out.println(Util.prettifyItemSet(uses));
 		}
 		uses.removeAll(items);				//Never return one of the original items
+		if (uses.isEmpty()){
+			uses.add(PgoHelper.getItem());
+		}
 		return uses;
 	}
 
@@ -83,6 +87,9 @@ public class Alchemy {
 				System.out.println(Util.prettifyItemSet(uses));
 		}
 		uses.removeAll(items);				//Never return one of the original items
+		if (uses.isEmpty()){
+			uses.add(PgoHelper.getItem());
+		}
 		return uses;
 	}
 

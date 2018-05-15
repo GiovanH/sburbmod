@@ -33,3 +33,8 @@ container.sburbmod_lathe.name=Totem Lathe
 item.sburbmod_alchtable.name=Overlapping Table
 tile.sburbmod_alchtable.name=Overlapping Table
 container.sburbmod_alchtable.name=Card Overlapping Table
+
+command.sayhello=Oh hi there friendo!
+
+grist.name.0=Build Grist
+grist.name.1=Shale

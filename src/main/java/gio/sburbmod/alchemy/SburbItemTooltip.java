@@ -16,15 +16,15 @@ import gio.sburbmod.playerdata.DataProvider;
 import gio.sburbmod.playerdata.IPlayerData;
 
 public class SburbItemTooltip {
-	
+
 	final static boolean DEBUG_PLAYER = false;
-	
-	@SideOnly(Side.CLIENT) 
+
+	@SideOnly(Side.CLIENT)
 	public static void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip,
 			ITooltipFlag flagIn, EntityPlayer player) {
 
 		NBTTagCompound nbtTagCompound = stack.getTagCompound();
-		if (nbtTagCompound == null)  {
+		if (nbtTagCompound == null) {
 			nbtTagCompound = new NBTTagCompound();
 			stack.setTagCompound(nbtTagCompound);
 		}
@@ -40,13 +40,13 @@ public class SburbItemTooltip {
 			if (item != null) {
 				tooltip.add(FmtCodes.SPCLEAN + "\"" + Captcha.getCaptchaCode(item) + "\"");
 				boolean knowledge = false;
-				if (DEBUG_PLAYER && player != null) System.out.println(player.toString());
-				if (player != null) knowledge = player.getCapability(DataProvider.CAP, null).knowsItemCode(item);
-				//if (knowledge) {
-					//tooltip.add((knowledge ? FmtCodes.CGREYDARK : FmtCodes.CGREYDARK + FmtCodes.SPMAGIC ) + item.getDisplayName() + "");
-					tooltip.add((knowledge ? FmtCodes.CWHITE : FmtCodes.CGREYDARK ) + item.getDisplayName() + "");
-				//}
-				
+				if (player == null)
+					return;
+				knowledge = player.getCapability(DataProvider.CAP, null).knowsItemCode(item);
+				tooltip.add((knowledge ? FmtCodes.CGREYDARK : FmtCodes.CGREYDARK + FmtCodes.SPMAGIC)
+						+ item.getDisplayName() + "");
+				tooltip.add((knowledge ? FmtCodes.CWHITE : FmtCodes.CGREYDARK) + item.getDisplayName() + "");
+
 			}
 		}
 	}

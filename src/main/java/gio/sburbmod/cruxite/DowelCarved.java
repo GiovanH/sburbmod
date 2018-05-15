@@ -54,7 +54,6 @@ public class DowelCarved extends DowelPlain {
 		try {
 			ItemStack input = new ItemStack(containerStack.getTagCompound().getCompoundTag("Item"));
 			int dmg = 1 + (int) Algorithms.hashString(input.toString(), getVariants());
-			System.out.println("Setting metadata for " + input.toString() + " to " + dmg);
 			containerStack.setItemDamage(dmg);
 		} catch (Exception e) {
 			e.printStackTrace();

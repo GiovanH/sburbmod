@@ -46,7 +46,6 @@ public class PunchCard extends Item {
 		try {
 			ItemStack input = new ItemStack(punchedStack.getTagCompound().getCompoundTag("Item"));
 			int dmg = 1 + (int) Algorithms.hashString(input.toString(), PunchCard.getVariants());
-			System.out.println("Setting metadata for " + input.toString() + " to " + dmg);
 			punchedStack.setItemDamage(dmg);
 		} catch (Exception e) {
 			e.printStackTrace();

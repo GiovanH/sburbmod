@@ -29,6 +29,8 @@ public class Handler {
 		IPlayerData cap = player.getCapability(DataProvider.CAP, null);
 		IPlayerData oldCap = event.getOriginal().getCapability(DataProvider.CAP, null);
 		cap.setInt(oldCap.getInt());
+		cap.setGristCollection(oldCap.getGristCollection());
+		cap.setKnownItems(oldCap.getKnownItems());
 	}
 
 }

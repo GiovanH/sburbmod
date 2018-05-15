@@ -16,18 +16,25 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 
 public class DataStorage implements IStorage<IPlayerData> {
 
-	static int KNOWNITEMS_TYPE = 0;
+	static int KNOWNITEMS_TYPE = 0; //The "type" byte: we learn this in writeNBT
+
+/* 
+ * Data Structure:
+ * Player
+ * - Known Items (List of Strings)
+ * - Grist (Compound key:value representing gristtype:amount)
+ */
 
 	@Override
 	public NBTBase writeNBT(Capability<IPlayerData> capability, IPlayerData instance, EnumFacing side) {
 		NBTTagCompound tag = new NBTTagCompound();
 		
-		NBTTagList knownItems = new NBTTagList();
-        tag.setTag("KnownItems", knownItems);
-        
+		//Known items
+		NBTTagList knownItems = new NBTTagList();        
 		for (String itemName : instance.getKnownItems()) {
 			knownItems.appendTag(new NBTTagString(itemName));
 		}
+        tag.setTag("KnownItems", knownItems);
 		KNOWNITEMS_TYPE = knownItems.getTagType();
 		
  		return tag;
@@ -42,7 +49,7 @@ public class DataStorage implements IStorage<IPlayerData> {
 			NBTTagList knownItems = tag.getTagList("KnownItems", KNOWNITEMS_TYPE);
 			Set<String> knownItemsSet  = new HashSet<String>();
 			
-			for (int i = 0; i < knownItems.tagCount(); i++) {
+			for (int i = 0; i < knownItems.tagCount(); i++) { 
 				 String item = knownItems.getStringTagAt(i);
 				 knownItemsSet.add(item);
 			}
